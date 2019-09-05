@@ -1,0 +1,216 @@
+% Fernando Saca and Stan Warford
+% Pepperdine University
+% File: Case-Analysis
+% !TEX TS-program = xelatex
+
+\documentclass[12pt, fleqn, leqno]{article}
+
+\usepackage[slantedGreek]{mathptmx}
+\usepackage{amsmath, amsthm, amssymb,latexsym}
+\usepackage{wasysym}                                % For temporal operators, Diamond and Box
+\usepackage{eucal}                                  % For temporal operators, Until and Wait
+\usepackage{booktabs}                               % For table rules
+\usepackage{boxedminipage}                          % For boxing text in Hasse diagram
+\usepackage{paralist}
+\usepackage{ellipsis}
+\usepackage{array}
+
+\usepackage[publication]{optional}
+%\usepackage[complete]{optional}
+
+\newcommand{\lgap}{2pt}                             % Line gap
+\newcommand{\llgap}{6pt}                            % Larger line gap
+\newcommand{\lllgap}{12pt}                          % Gap between tables
+\newcommand{\mymathindent}{24pt}                    % Indentation for math tabbing
+\newcommand{\equivs}{\ensuremath{\;\equiv\;}}       % Equivales with space
+\newcommand{\equivss}{\ensuremath{\;\;\equiv\;\;}}  % Equivales with double space
+\newcommand{\nequiv}{\ensuremath{\not\equiv}}       % Inequivalent
+\newcommand{\impl}{\ensuremath{\Rightarrow}}        % Implies
+\newcommand{\nimpl}{\ensuremath{\not\Rightarrow}}   % Does not imply
+\newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from
+\newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from
+
+% Macros for Temporal Operators
+\newcommand{\Until}{\;\mathcal{U}\;}
+\newcommand{\Wait}{\;\mathcal{W}\;}
+\newcommand{\Next}{\;\,\text{\raisebox{3.5pt}{\circle{6}}}}
+\newcommand{\Event}{\Diamond\,}
+\newcommand{\Always}{\Box\,}
+
+\DeclareMathOperator{\divides}{divides}
+
+\newcommand{\myqed}{\rule[-.23ex]{1.2ex}{2.0ex}}
+\newcommand{\myqedtab}{\hspace{384pt}}              % For flush right qed symbol in tabbing environment. No longer used.
+\newcommand{\spacer}{\vspace{-30pt}}
+\newcommand{\firstspacer}{\vspace{-26pt}}
+
+% Thanks to David Gries for sharing the following macros
+% Macros for quantifications.
+\newcommand{\thedr}{\rule[-.25ex]{.32mm}{1.75ex}}   % Symbol that separates dummy from range in quantification
+\newcommand{\dr}{\;\,\thedr\,\;}                    % Symbol that separates dummy from range, with spacing
+\newcommand{\rb}{:}                                 % Symbol that separates range from body in quantification
+\newcommand{\drrb}{\;\thedr\,{:}\;}                 % Symbol that separates dummy from body when range is missing
+\newcommand{\all}{\forall}                          % Universal quantification
+\newcommand{\ext}{\exists}                          % Existential quantification
+
+% Macros for proof hints
+\newcommand{\Gll} {\langle}                         % Open hint
+\newcommand{\Ggg} {\rangle}                         % Close hint
+\newlength{\Glllength}                              % Length of open hint symbol
+\settowidth{\Glllength}{$.\Gll$}
+\newcommand{\Hint}[1]     {\ \ \ $\Gll              \mbox{#1} \Ggg$ }   % Single line hint
+\newcommand{\Hintfirst}[1]{\ \ \ $\Gll              \mbox{#1}$ }        % First line of multiline hint
+\newcommand{\Hintmid}[1]  {\ \ $\hspace{\Glllength} \mbox{#1}$ }        % Middle line of multiline hint
+\newcommand{\Hintlast}[1] {\ \ $\hspace{\Glllength} \mbox{#1} \Ggg$ }   % Last line of multiline hint
+
+% Single and double quotes
+\newcommand{\Lq}{\mbox{`}}
+\newcommand{\Rq}{\mbox{'}}
+\newcommand{\Lqq}{\mbox{``}}
+\newcommand{\Rqq}{\mbox{''}}
+
+\oddsidemargin  0.0in
+\evensidemargin 0.0in
+\textwidth      6.0in
+\headheight     0.0in
+\topmargin      0.0in
+\textheight=8.8in
+%\parindent=0in
+%\pagestyle{plain}
+
+\pagestyle{myheadings} 
+\markboth{\textbf{Draft} (\today)} {\textbf{Draft} (\today)}
+
+\title{A Theorem for Case Analysis}
+
+\author{
+   Fernando Saca\\
+   J. Stanley Warford\\
+   Pepperdine University\\
+   Malibu, CA 90263}
+\date{} % Required for no date to appear in heading
+
+\begin{document}
+\maketitle
+\begin{abstract}
+
+This paper uses the equational deductive system to present a new theorem, $E^{z}_{true}\land E^{z}_{false} \impl E^{z}_{p}$, which is used in proofs by case analysis. 
+The equational system, developed by Dijkstra and Scholten and extended by Gries and Schneider in their text \textit{A Logical Approach to Discrete Math}, is based on only four inference rules -- Substitution, Leibniz, Equanimity, and Transitivity. 
+Inference rules in the older Hilbert-style systems, notably modus ponens, appear as theorems in this equational deductive system, which is used to prove algorithm correctness in computer science.
+The theorem presented in this paper exists only as a metatheorem in the Gries and Schneider text.
+Two proofs of the theorem are presented; one applies the Shannon theorem. 
+Both of these proofs avoid the proof technique of assuming the antecedent (which would be illicit given the precedence of theorems over proof technique metatheorems).
+Finally, this paper gives a counterexample for the converse of the new theorem, establishing that the implication in the theorem cannot be replaced with equivalence.
+
+\end{abstract}
+
+\thispagestyle{plain}
+
+\section{Introduction}
+
+\subsection{Background}
+
+A proof calculus is a system for proving propositions through the use of axioms and inference rules. Two of the most popular proof calculi are the Hilbert system and the natural deduction system. The former is sometimes used in the high-school environment to aid in the teaching of geometry; the latter is typically taught in undergraduate symbolic logic courses. There is a stark distinction between the two systems, due to their different approaches to axiomatization and their use of inference rules. Natural deduction attempts to mimic how people naturally reason, and contains few or no axioms and numerous inference rules. The Hilbert system makes no such attempt to mimic natural language -- it contains only one inference rule, modus ponens, and a hefty amount of axiom schemes.
+
+A third proof calculus, which will be used in this paper, is the equational system. This system is widely applicable in the realm of computer science, incorporating the usual propositional and predicate calculus of the other proof systems and seamlessly extending them to reason about sets, sequences, functions, programs, and graphs. The equational system was developed in the late 1980’s by Dijkstra and Scholten and was then largely expanded by Gries and Schneider. A distinctive feature of it is its use of only four inference rules - Substitution, Leibniz, Equanimity, and Transitivity - and its parsimonious use of axioms. Its axiomatization strikes a pleasant balance between the extensive use of axioms in the Hilbert style and the lack of them in natural deduction.
+
+The equational system’s cumulative structure and its resemblance to high-school algebra make it the optimal proof calculus to expound the case analysis proof technique for which this paper presents a new metatheorem. Case analysis is sometimes referred to as proof by exhaustion, for it attempts to prove that an exhaustive set of cases leads to a specific outcome. It is instrumental in natural deduction, where it is used as an inference rule called disjunction exploitation. The technique has two stages: the first involves proving that there is an exhaustive set of cases that altogether represents all possibilities; the second presents a proof for each individual case.
+
+\subsection{Case analysis}
+
+Describe Gries and Schneider's treatment of case analysis including Shannon as justification of the metatheorem.
+
+Include the metatheorem and show how Gries justifies it using Shannon. 
+
+Present the new theorem and show how it is a more direct justification of the case analysis metatheorem.
+
+\section{Results}
+
+Theorem: $E^{z}_{true}\land E^{z}_{false} \impl E^{z}_{p}$
+
+\textit{Proof with (3.89) Shannon}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $E^{z}_{true}\land E^{z}_{false}$\\
+	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equivs p$}\\[\lgap]
+	\> \>   $E^{z}_{true}\land E^{z}_{false}\land {true}$\\
+	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lor \lnot p$}\\[\lgap]
+	\> \>   $E^{z}_{true}\land E^{z}_{false}\land(p\lor\lnot p)$\\
+	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equivs (p \land q) \lor (p \land r)$}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{false}\land\lnot p)$\\
+	\> $=$  \>  \Hint{(3.15), $\lnot p \equiv p \equiv false$ and (3.3) Identity of $\equiv$, $true \equiv q \equiv q$}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land (\lnot p=false))\lor(E^{z}_{true}\land E^{z}_{false}\land (\lnot p=true))$\\
+	\> $=$  \>  \Hint{(3.84a), $(e = f) \land E^{z}_{e} \equivs (e = f) \land E^{z}_{f}$ twice}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{\lnot p}\land (\lnot p=false))\lor(E^{z}_{\lnot p}\land E^{z}_{false}\land (\lnot p=true))$\\
+	\> $=$  \>  \Hint{(3.15), $\lnot p \equiv p \equiv false$ and (3.3) Identity of $\equiv$, $true \equiv q \equiv q$}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{\lnot p}\land p)\lor(E^{z}_{\lnot p}\land E^{z}_{false}\land \lnot p)$\\
+	\> $=$  \>  \Hint{(3.36) Symmetry of $\land$, $p \land q \equivs q \land p$}\\[\lgap]
+	\> \>  $(E^{z}_{\lnot p}\land p\land E^{z}_{true})\lor(E^{z}_{\lnot p}\land \lnot p\land E^{z}_{false})$\\
+	\> $=$  \>  \Hint{(3.37) Associativity of $\land$, $(p \land q) \land r \equivs p \land (q \land r)$}\\[\lgap]
+	\> \>  $(E^{z}_{\lnot p}\land (p\land E^{z}_{true}))\lor(E^{z}_{\lnot p}\land (\lnot p\land E^{z}_{false}))$\\
+	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equivs (p \land q) \lor (p \land r)$}\\[\lgap]
+	\> \>   $E^{z}_{\lnot p}\land ((p\land E^{z}_{true})\lor (\lnot p\land E^{z}_{false}))$\\
+	\> $=$  \>  \Hint{(3.89) Shannon, $E^{z}_{p} \equivs (p \land E^{z}_{true}) \lor (\lnot p \land E^{z}_{false})$}\\[\lgap]
+	\> \>   $E^{z}_{\lnot p}\land E^{z}_{p}$\\
+	\> $\impl$  \>  \Hint{(3.76b), $p \land q \impl p$}\\[\lgap]
+	\> \>   $E^{z}_{p}$ \quad \myqed\\
+\end{tabbing}
+
+\emph{Proof without (3.89) Shannon}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $E^{z}_{true}\land E^{z}_{false}$\\
+	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equivs p$}\\[\lgap]
+	\> \>   $E^{z}_{true}\land E^{z}_{false}\land {true}$\\
+	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lor \lnot p$}\\[\lgap]
+	\> \>   $E^{z}_{true}\land E^{z}_{false}\land(p\lor\lnot p)$\\
+	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equivs (p \land q) \lor (p \land r)$}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{false}\land\lnot p)$\\
+	\> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $true \equiv q \equiv q$ and (3.15), $\lnot p \equiv p \equiv false$}\\[\lgap]
+	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land (p=true))\lor(E^{z}_{true}\land E^{z}_{false}\land (p=false))$\\
+	\> $=$  \>  \Hint{(3.84a), $(e = f) \land E^{z}_{e} \equivs (e = f) \land E^{z}_{f}$ twice}\\[\lgap]
+	\> \>   $(E^{z}_{p}\land E^{z}_{false}\land (p=true))\lor(E^{z}_{true}\land E^{z}_{p}\land (p=false))$\\
+	\> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $true \equiv q \equiv q$ and (3.15), $\lnot p \equiv p \equiv false$}\\[\lgap]
+	\> \>   $(E^{z}_{p}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{p}\land\lnot p)$\\
+	\> $=$  \>  \Hint{(3.36) Symmetry of $\land$, $p \land q \equivs q \land p$}\\[\lgap]
+	\> \>  $(E^{z}_{p}\land p\land E^{z}_{false})\lor(E^{z}_{p}\land \lnot p\land E^{z}_{true})$\\
+	\> $=$  \>  \Hint{(3.37) Associativity of $\land$, $(p \land q) \land r \equivs p \land (q \land r)$}\\[\lgap]
+	\> \>  $(E^{z}_{p}\land (p\land E^{z}_{false}))\lor(E^{z}_{p}\land (\lnot p\land E^{z}_{true}))$\\
+	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equivs (p \land q) \lor (p \land r)$}\\[\lgap]
+	\> \>   $E^{z}_{p}\land ((p\land E^{z}_{false})\lor (\lnot p\land E^{z}_{true}))$\\
+	\> $\impl$  \>  \Hint{(3.76b), $p \land q \impl p$}\\[\lgap]
+	\> \>   $E^{z}_{p}$ \quad \myqed \\
+
+\end{tabbing}
+
+\emph{Counterexample of the converse, $E^{z}_{p} \impl E^{z}_{true}\land E^{z}_{false}$}:
+
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+E can be any expression. In this counterexample, it will be assumed to be $p \lor\lnot z.$\\
+	\> \>  $E^{z}_{p} \impl E^{z}_{true}\land E^{z}_{false}$\\
+	\> $=$  \>  \Hint{Assume $E = p \lor \lnot z$}\\[\lgap]
+	\> \>  $(p \lor\lnot z)^{z}_{p} \impl (p \lor\lnot z)^{z}_{true}\land (p \lor\lnot z)^{z}_{false}$\\
+	\> $=$  \>  \Hint{Textual substitution}\\[\lgap]
+	\> \>  $(p \lor\lnot p) \impl (p \lor\lnot true)\land (p \lor\lnot false)$\\
+	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lor \lnot p$}\\[\lgap]
+	\> \>  $true \impl (p \lor\lnot true)\land (p \lor\lnot false)$\\
+	\> $=$  \>  \Hint{(3.73) Left Identity of $\impl$, $true \impl p \equivs p$}\\[\lgap]
+	\> \>  $(p \lor\lnot true)\land (p \lor\lnot false)$\\
+	\> $=$  \>  \Hint{(3.8) Definition of $false$, $false \equiv \lnot true$ and (3.13) Negation of $false$, $\lnot false \equiv true$}\\[\lgap]
+	\> \>  $(p \lor false)\land (p \lor true)$\\
+	\> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p \lor false \equivs p$ and (3.29) Zero of $\lor$, $p \lor true \equivs true$}\\[\lgap]
+	\> \>  $p\land true$\\
+	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equivs p$}\\[\lgap]
+	\> \>  $p$ \quad \\ For the converse to be a theorem, the end result would have to be $true$, not $p$.
+
+\end{tabbing}
+
+\section{Conclusion}
+
+\bibliographystyle{plain}
+\bibliography{myBiblio.bib}
+
+\end{document}
+
+
