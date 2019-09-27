@@ -1,10 +1,11 @@
-% Fernando Saca and Stan Warford
+% Alex Prieger and Stan Warford
 % Pepperdine University
 % File: Case-Analysis
 % !TEX TS-program = xelatex
 
 \documentclass[12pt, fleqn, leqno]{article}
 
+\usepackage{fontspec}
 \usepackage[slantedGreek]{mathptmx}
 \usepackage{amsmath, amsthm, amssymb,latexsym}
 \usepackage{wasysym}                                % For temporal operators, Diamond and Box
@@ -15,8 +16,10 @@
 \usepackage{ellipsis}
 \usepackage{array}
 
-\usepackage[publication]{optional}
-%\usepackage[complete]{optional}
+\setmainfont{Times}[ItalicFont    ={* Italic},
+                    BoldFont      ={* Bold},
+                    BoldItalicFont={* Bold Italic}]
+\setsansfont{Helvetica}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -69,6 +72,8 @@
 \newcommand{\Lqq}{\mbox{``}}
 \newcommand{\Rqq}{\mbox{''}}
 
+\DeclareMathOperator{\incomp}{incomp}
+
 \oddsidemargin  0.0in
 \evensidemargin 0.0in
 \textwidth      6.0in
@@ -81,10 +86,10 @@
 \pagestyle{myheadings} 
 \markboth{\textbf{Draft} (\today)} {\textbf{Draft} (\today)}
 
-\title{A Quadrotomy of Partial Orders}
+\title{A Quadrotomy for Partial Orders}
 
 \author{
-   Fernando Saca\\
+   Alex Prieger\\
    J. Stanley Warford\\
    Pepperdine University\\
    Malibu, CA 90263}
@@ -94,13 +99,10 @@
 \maketitle
 \begin{abstract}
 
-This paper uses the equational deductive system to present a new theorem, $E^{z}_{true}\land E^{z}_{false} \impl E^{z}_{p}$, which is used in proofs by case analysis. 
-The equational system, developed by Dijkstra and Scholten and extended by Gries and Schneider in their text \textit{A Logical Approach to Discrete Math}, is based on only four inference rules -- Substitution, Leibniz, Equanimity, and Transitivity. 
+This paper uses a calculational system to formally prove a quadrotomy for partial orders $\preceq$, which states that any element $x$ of the partial order must be related to any other element $y$ by exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$, where $\prec$ is the reflexive reduction of $\preceq$ and $\incomp(x,y)$ is defined as $\incomp(x,y) \equivs \neg (x\preceq y) \land \neg (y\preceq x)$.
+The calculational system, developed by Dijkstra and Scholten and extended by Gries and Schneider in their text \textit{A Logical Approach to Discrete Math}, is based on only four inference rules -- Substitution, Leibniz, Equanimity, and Transitivity. 
 Inference rules in the older Hilbert-style systems, notably modus ponens, appear as theorems in this equational deductive system, which is used to prove algorithm correctness in computer science.
-The theorem presented in this paper exists only as a metatheorem in the Gries and Schneider text.
-Two proofs of the theorem are presented; one applies the Shannon theorem. 
-Both of these proofs avoid the proof technique of assuming the antecedent (which would be illicit given the precedence of theorems over proof technique metatheorems).
-Finally, this paper gives a counterexample for the converse of the new theorem, establishing that the implication in the theorem cannot be replaced with equivalence.
+The theorem presented in this paper is a generalization of the trichotomy theorem for integers proved by Gries and Schneider, which states that any integer $n$ must be related to any other integer $m$ by exactly one of (a) $n<m$, (b) $n=m$, or (c) $m<n$.
 
 \end{abstract}
 
