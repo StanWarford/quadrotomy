@@ -15,11 +15,23 @@
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
+\usepackage{verbatim}
 
+% For Dr. Warford's computer
+\begin{comment}
 \setmainfont{Times}[ItalicFont    ={* Italic},
                     BoldFont      ={* Bold},
                     BoldItalicFont={* Bold Italic}]
 \setsansfont{Helvetica}
+\end{comment}
+
+% For Alex's computer
+%\begin{comment}
+\setmainfont{Times New Roman}[ItalicFont    ={* Italic},
+                    BoldFont      ={* Bold},
+                    BoldItalicFont={* Bold Italic}]
+\setsansfont{Arial}
+%\end{comment}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -128,84 +140,160 @@ Present the new theorem and show how it is a more direct justification of the ca
 
 \section{Results}
 
-Theorem: $E^{z}_{true}\land E^{z}_{false} \impl E^{z}_{p}$
+Lemma 1: $b \prec c \lor b = c \equiv b \preceq c$, where $\prec$ is the reflexive reduction of $\preceq$.
 
-\textit{Proof with (3.89) Shannon}:
+\textit{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $E^{z}_{true}\land E^{z}_{false}$\\
-	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equivs p$}\\[\lgap]
-	\> \>   $E^{z}_{true}\land E^{z}_{false}\land {true}$\\
-	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lor \lnot p$}\\[\lgap]
-	\> \>   $E^{z}_{true}\land E^{z}_{false}\land(p\lor\lnot p)$\\
-	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equivs (p \land q) \lor (p \land r)$}\\[\lgap]
-	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{false}\land\lnot p)$\\
-	\> $=$  \>  \Hint{(3.15), $\lnot p \equiv p \equiv false$ and (3.3) Identity of $\equiv$, $true \equiv q \equiv q$}\\[\lgap]
-	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land (\lnot p=false))\lor(E^{z}_{true}\land E^{z}_{false}\land (\lnot p=true))$\\
-	\> $=$  \>  \Hint{(3.84a), $(e = f) \land E^{z}_{e} \equivs (e = f) \land E^{z}_{f}$ twice}\\[\lgap]
-	\> \>   $(E^{z}_{true}\land E^{z}_{\lnot p}\land (\lnot p=false))\lor(E^{z}_{\lnot p}\land E^{z}_{false}\land (\lnot p=true))$\\
-	\> $=$  \>  \Hint{(3.15), $\lnot p \equiv p \equiv false$ and (3.3) Identity of $\equiv$, $true \equiv q \equiv q$}\\[\lgap]
-	\> \>   $(E^{z}_{true}\land E^{z}_{\lnot p}\land p)\lor(E^{z}_{\lnot p}\land E^{z}_{false}\land \lnot p)$\\
-	\> $=$  \>  \Hint{(3.36) Symmetry of $\land$, $p \land q \equivs q \land p$}\\[\lgap]
-	\> \>  $(E^{z}_{\lnot p}\land p\land E^{z}_{true})\lor(E^{z}_{\lnot p}\land \lnot p\land E^{z}_{false})$\\
-	\> $=$  \>  \Hint{(3.37) Associativity of $\land$, $(p \land q) \land r \equivs p \land (q \land r)$}\\[\lgap]
-	\> \>  $(E^{z}_{\lnot p}\land (p\land E^{z}_{true}))\lor(E^{z}_{\lnot p}\land (\lnot p\land E^{z}_{false}))$\\
-	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equivs (p \land q) \lor (p \land r)$}\\[\lgap]
-	\> \>   $E^{z}_{\lnot p}\land ((p\land E^{z}_{true})\lor (\lnot p\land E^{z}_{false}))$\\
-	\> $=$  \>  \Hint{(3.89) Shannon, $E^{z}_{p} \equivs (p \land E^{z}_{true}) \lor (\lnot p \land E^{z}_{false})$}\\[\lgap]
-	\> \>   $E^{z}_{\lnot p}\land E^{z}_{p}$\\
-	\> $\impl$  \>  \Hint{(3.76b), $p \land q \impl p$}\\[\lgap]
-	\> \>   $E^{z}_{p}$ \quad \myqed\\
+	\> \>  $b \prec c \lor b = c$\\
+	\> $=$  \>  \Hint{(14.15.4) Notation, $ \langle b, c \rangle \in \rho$ and $b \rho c$ are interchangeable notations.}\\[\lgap]
+	\> \>   $ \langle b, c \rangle \in \prec \lor b = c$\\
+	\> $=$  \>  \Hint{(14.15.3) Identity lemma, $ \langle x, y \rangle \in i_B \equiv x = y$}\\[\lgap]
+	\> \>   $ \langle b, c \rangle \in \prec \lor \langle b, c \rangle \in i_B$\\
+	\> $=$  \>  \Hint{(11.20) Axiom, Union, $v \in S \bigcup T \equiv v \in S \lor v \in T$}\\[\lgap]
+	\> \>   $ \langle b, c \rangle \in \prec \bigcup i_B$\\
+	\> $=$  \>  \Hint{(14.49b) If $\rho$ is a quasi order over a set B, then $\rho \bigcup i_B$ is a partial order}\\[\lgap]
+	\> \>   $ \langle b, c \rangle \in \preceq$\\
+	\> $=$  \>  \Hint{(14.15.4) Notation}\\[\lgap]
+	\> \>   $b \preceq c$\quad \myqed\\
 \end{tabbing}
 
-\emph{Proof without (3.89) Shannon}:
+Lemma 2: $(p \lor q) \land \lnot (q \lor r) \equiv p \land \lnot q \land \lnot r$
+
+\textit{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $E^{z}_{true}\land E^{z}_{false}$\\
-	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equivs p$}\\[\lgap]
-	\> \>   $E^{z}_{true}\land E^{z}_{false}\land {true}$\\
-	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lor \lnot p$}\\[\lgap]
-	\> \>   $E^{z}_{true}\land E^{z}_{false}\land(p\lor\lnot p)$\\
-	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equivs (p \land q) \lor (p \land r)$}\\[\lgap]
-	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{false}\land\lnot p)$\\
-	\> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $true \equiv q \equiv q$ and (3.15), $\lnot p \equiv p \equiv false$}\\[\lgap]
-	\> \>   $(E^{z}_{true}\land E^{z}_{false}\land (p=true))\lor(E^{z}_{true}\land E^{z}_{false}\land (p=false))$\\
-	\> $=$  \>  \Hint{(3.84a), $(e = f) \land E^{z}_{e} \equivs (e = f) \land E^{z}_{f}$ twice}\\[\lgap]
-	\> \>   $(E^{z}_{p}\land E^{z}_{false}\land (p=true))\lor(E^{z}_{true}\land E^{z}_{p}\land (p=false))$\\
-	\> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $true \equiv q \equiv q$ and (3.15), $\lnot p \equiv p \equiv false$}\\[\lgap]
-	\> \>   $(E^{z}_{p}\land E^{z}_{false}\land p)\lor(E^{z}_{true}\land E^{z}_{p}\land\lnot p)$\\
-	\> $=$  \>  \Hint{(3.36) Symmetry of $\land$, $p \land q \equivs q \land p$}\\[\lgap]
-	\> \>  $(E^{z}_{p}\land p\land E^{z}_{false})\lor(E^{z}_{p}\land \lnot p\land E^{z}_{true})$\\
-	\> $=$  \>  \Hint{(3.37) Associativity of $\land$, $(p \land q) \land r \equivs p \land (q \land r)$}\\[\lgap]
-	\> \>  $(E^{z}_{p}\land (p\land E^{z}_{false}))\lor(E^{z}_{p}\land (\lnot p\land E^{z}_{true}))$\\
-	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equivs (p \land q) \lor (p \land r)$}\\[\lgap]
-	\> \>   $E^{z}_{p}\land ((p\land E^{z}_{false})\lor (\lnot p\land E^{z}_{true}))$\\
-	\> $\impl$  \>  \Hint{(3.76b), $p \land q \impl p$}\\[\lgap]
-	\> \>   $E^{z}_{p}$ \quad \myqed \\
-
+	\> \>  $(p \lor q) \land \lnot (q \lor r)$\\
+	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lor q) \equiv \lnot p \land \lnot q$}\\[\lgap]
+	\> \>   $(p \lor q) \land \lnot q \land \lnot r$\\
+	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equiv (p \land q) \lor (p\land r)$}\\[\lgap]
+	\> \>   $((p \land \lnot q) \lor (q \land \lnot q)) \land \lnot r$\\
+	\> $=$  \>  \Hint{(3.42) Contradiction, $p \land \lnot p \equiv false$}\\[\lgap]
+	\> \>   $((p \land \lnot q) \lor false) \land \lnot r$\\
+	\> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p \lor false \equiv p$}\\[\lgap]
+	\> \>   $p \land \lnot q \land \lnot r$ \quad \myqed\\
 \end{tabbing}
 
-\emph{Counterexample of the converse, $E^{z}_{p} \impl E^{z}_{true}\land E^{z}_{false}$}:
+Lemma 3: $(p \impl q) \impl (p \land q \equiv p)$
 
+\textit{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-E can be any expression. In this counterexample, it will be assumed to be $p \lor\lnot z.$\\
-	\> \>  $E^{z}_{p} \impl E^{z}_{true}\land E^{z}_{false}$\\
-	\> $=$  \>  \Hint{Assume $E = p \lor \lnot z$}\\[\lgap]
-	\> \>  $(p \lor\lnot z)^{z}_{p} \impl (p \lor\lnot z)^{z}_{true}\land (p \lor\lnot z)^{z}_{false}$\\
-	\> $=$  \>  \Hint{Textual substitution}\\[\lgap]
-	\> \>  $(p \lor\lnot p) \impl (p \lor\lnot true)\land (p \lor\lnot false)$\\
-	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lor \lnot p$}\\[\lgap]
-	\> \>  $true \impl (p \lor\lnot true)\land (p \lor\lnot false)$\\
-	\> $=$  \>  \Hint{(3.73) Left Identity of $\impl$, $true \impl p \equivs p$}\\[\lgap]
-	\> \>  $(p \lor\lnot true)\land (p \lor\lnot false)$\\
-	\> $=$  \>  \Hint{(3.8) Definition of $false$, $false \equiv \lnot true$ and (3.13) Negation of $false$, $\lnot false \equiv true$}\\[\lgap]
-	\> \>  $(p \lor false)\land (p \lor true)$\\
-	\> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p \lor false \equivs p$ and (3.29) Zero of $\lor$, $p \lor true \equivs true$}\\[\lgap]
-	\> \>  $p\land true$\\
-	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equivs p$}\\[\lgap]
-	\> \>  $p$ \quad \\ For the converse to be a theorem, the end result would have to be $true$, not $p$.
+	\> \>  $p \land q \equiv p$\\
+	\> $=$  \>  \Hint{(3.60) Implication, $p \impl q \equiv p \land q \equiv p$}\\[\lgap]
+	\> \>   $p \impl q$\\
+	\> $\foll$  \>  \Hint{(3.71) Reflexivity of $\impl$, $p \impl p$}\\[\lgap]
+	\> \>   $p \impl q$ \quad \myqed\\
+\end{tabbing}
 
+Lemma 4: $\rho$ is irreflexive $\impl (b \rho c \impl \lnot (b = c))$
+
+\textit{Proof by (4.4) Deduction}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $b \rho c \impl \lnot (b = c)$\\
+	\> $=$  \>  \Hint{(3.59) Implication, $p \impl q \equiv \lnot p \lor q$}\\[\lgap]
+	\> \>   $\lnot (b \rho c) \lor \lnot (b = c)$\\
+	\> $=$  \>  \Hint{(3.47a) De Morgan, $\lnot (p \land q) \equiv \lnot p \lor \lnot q$}\\[\lgap]
+	\> \>   $\lnot (b \rho c \land b = c)$\\
+	\> $=$  \>  \Hint{(3.84a) Substitution, $(e = f) \land E^z_e \equiv (e = f) \land E^z_f$}\\[\lgap]
+	\> \>   $\lnot (b \rho b \land b = c)$\\
+	\> $=$  \>  \Hint{(3.12) Double negation, $p \equiv \lnot \lnot p$}\\[\lgap]
+	\> \>   $\lnot (\lnot \lnot b \rho b \land b = c)$\\
+	\> $=$  \>  \Hint{Assume the antecedent, $\rho$ is irreflexive; that is, $(\all b \dr \rb \lnot (b \rho b))$, with (9.16) Metatheorem, P is a theorem iff $(\all x \dr \rb P)$ is a theorem}\\[\lgap]
+	\> \>   $\lnot (\lnot true \land b = c)$\\
+	\> $=$  \>  \Hint{(3.8) Definition of $false$, $false \equiv \lnot true$}\\[\lgap]
+	\> \>   $\lnot (false \land b = c)$\\
+	\> $=$  \>  \Hint{(3.40) Zero of $\land$, $p \land false \equiv false$}\\[\lgap]
+	\> \>  $\lnot false$\\
+	\> $=$  \>  \Hint{(3.13) Negation of $false$, $\lnot false \equiv true$}\\[\lgap]
+	\> \>   $true$ \quad \myqed\\
+\end{tabbing}
+
+Lemma 5: $\rho$ is antisymmetric $\land$ $\rho$ is reflexive $\impl (b \rho c \land c \rho b \equiv b = c)$
+
+\textit{Proof by (4.4) Deduction and (4.7) Mutual Implication}:
+
+a. $b \rho c \land c \rho b \impl b = c$
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $b \rho c \land c \rho b$\\
+	\> $=$  \>  \Hint{Assume the antecedent, $\rho$ is antisymmetric; that is, $(\all \dr \rb b \rho c \land c \rho b \impl b = c$, with (9.16) Metatheorem, P is a theorem iff $(\all x \dr \rb P)$ is a theorem}\\[\lgap]
+	\> \>   $b = c$ \quad \myqed\\
+\end{tabbing}
+
+b. $b = c \impl b \rho c \land c \rho b$
+
+\textit{Proof by (4.4) Deduction}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $b \rho c \land c \rho b$\\
+	\> $=$  \>  \Hint{Assume the antecedent, $b = c$}\\[\lgap]
+	\> \>   $b \rho b \land b \rho b$\\
+	\> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p \land p \equiv p$}\\[\lgap]
+	\> \>   $b \rho b$\\
+	\> $=$  \>  \Hint{Assume the antecedent, $\rho$ is reflexive; that is, $(\all \dr \rb b \rho b)$, with (9.16) Metatheorem, P is a theorem iff $(\all x \dr \rb P)$ is a theorem}\\[\lgap]
+	\> \>   $true$ \quad \myqed\\
+\end{tabbing}
+
+Theorem (a): $b \prec c \equiv \lnot(c \prec b \lor b = c \lor \incomp(b, c))$
+
+\textit{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $\lnot(c \prec b \lor b = c \lor \incomp(b, c))$\\
+	\> $=$  \>  \Hint{Lemma 1, $b \prec c \lor b = c \equiv b \preceq c$}\\[\lgap]
+	\> \>   $\lnot(c \preceq b \lor \incomp(b, c))$\\
+	\> $=$  \>  \Hint{(14.47.1) Definition, Incomparable, $\incomp(b, c) \equiv \lnot (b \preceq c) \land \lnot (c \preceq b)$}\\[\lgap]
+	\> \>   $\lnot (c \preceq b \lor (\lnot (b \preceq c) \land \lnot (c \preceq b)))$\\
+	\> $=$  \>  \Hint{(3.44b) Absorption, $p \lor (\lnot p \land q) \equiv p \lor q$}\\[\lgap]
+	\> \>   $\lnot (c \preceq b \lor \lnot (b \preceq c))$\\
+	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lor q) \equiv \lnot p \land \lnot q$, with (3.12) Double negation}\\[\lgap]
+	\> \>   $b \preceq c \land \lnot(c \preceq b)$\\
+	\> $=$  \>  \Hint{Lemma 1, twice}\\[\lgap]
+	\> \>   $(b \prec c \lor b = c) \land \lnot (c \prec b \lor b = c)$\\
+	\> $=$  \>  \Hint{Lemma 2, $(p \lor q) \land \lnot (q \lor r) \equiv p \land \lnot q \land \lnot r$}\\[\lgap]
+	\> \>   $b \prec c \land \lnot (b = c) \land \lnot (c \prec b)$\\
+	\> $=$  \>  \Hint{Lemma 3, $(p \impl q) \impl (p \land q \equiv p)$, with $p, q := b \prec c, \lnot (c \prec b)$. The antecedent, $b \prec c \impl \lnot (c \prec b)$, is true by the definition of asymmetry and the fact that strict orders are asymmetric.}\\[\lgap]
+	\> \>  $b \prec c \land \lnot (b = c)$\\
+	\> $=$  \>  \Hint{Lemma 3, with $p, q := b \prec c, \lnot (b = c)$. The antecedent, $b \prec c \impl \lnot (b = c)$, is true by Lemma 4, $\rho$ is irreflexive $\impl (b \rho c \impl \lnot (b = c))$, and the fact that strict orders are irreflexive.}\\[\lgap]
+	\> \>   $b \prec c$ \quad \myqed\\
+\end{tabbing}
+
+Theorem (b): $c \prec b \equiv \lnot(b \prec c \lor b = c \lor \incomp(b, c))$
+
+Since = and \textit{incomp} are symmetric, the proof of b is identical to the proof of a with $b, c := c, b$.\\
+
+Theorem (c): $b = c \equiv \lnot(b \prec c \lor c \prec b \lor \incomp(b, c))$
+
+\textit{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $\lnot (b \prec c \lor c \prec b \lor \incomp(b, c))$\\
+	\> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p \equiv p \lor p$}\\[\lgap]
+	\> \>   $\lnot (b \prec c \lor c \prec b \lor \incomp(b, c) \lor \incomp(b, c))$\\
+	\> $=$  \>  \Hint{(14.48.2), $\lnot (b \preceq c) \equiv c \prec b\lor \incomp(b, c)$, twice}\\[\lgap]
+	\> \>   $\lnot ( \lnot (b \preceq c) \lor \lnot (c \preceq b))$\\
+	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lor q) \equiv \lnot p \land \lnot q$, with (3.12) Double negation twice}\\[\lgap]
+	\> \>   $b \preceq c \land c \preceq b$\\
+	\> $=$  \>  \Hint{Lemma 5, $\rho$ is antisymmetric $\land$ $\rho$ is reflexive $\impl (b \rho c \land c \rho b \equiv b = c)$, with the fact that partial orders are antisymmetric and reflexive}\\[\lgap]
+	\> \>   $b = c$ \quad \myqed\\
+\end{tabbing}
+
+Theorem (d): $\incomp(b, c) \equiv \lnot(b \prec c \lor c \prec b \lor b = c)$
+
+\textit{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $\lnot(b \prec c \lor c \prec b \lor b = c)$\\
+	\> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p \equiv p \lor p$}\\[\lgap]
+	\> \>   $\lnot(b \prec c \lor c \prec b \lor b = c \lor b = c)$\\
+	\> $=$  \>  \Hint{Lemma 1, $b \prec c \lor b = c \equiv b \preceq c$ twice}\\[\lgap]
+	\> \>   $\lnot (b \preceq c \lor c \preceq b)$\\
+	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lor q) \equiv \lnot p \land \lnot q$}\\[\lgap]
+	\> \>   $\lnot (b \preceq c) \land \lnot (c \preceq b)$\\
+	\> $=$  \>  \Hint{(14.47.1) Definition, Incomparable: $\incomp(b, c) \equiv \lnot(b \preceq c) \land \lnot(c \preceq b)$}\\[\lgap]
+	\> \>   $\incomp(b, c)$ \quad \myqed\\
 \end{tabbing}
 
 \section{Conclusion}
