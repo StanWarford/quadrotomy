@@ -18,20 +18,20 @@
 \usepackage{verbatim}
 
 % For Dr. Warford's computer
-\begin{comment}
+%\begin{comment}
 \setmainfont{Times}[ItalicFont    ={* Italic},
                     BoldFont      ={* Bold},
                     BoldItalicFont={* Bold Italic}]
 \setsansfont{Helvetica}
-\end{comment}
+%\end{comment}
 
 % For Alex's computer
-%\begin{comment}
+\begin{comment}
 \setmainfont{Times New Roman}[ItalicFont    ={* Italic},
                     BoldFont      ={* Bold},
                     BoldItalicFont={* Bold Italic}]
 \setsansfont{Arial}
-%\end{comment}
+\end{comment}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -39,6 +39,8 @@
 \newcommand{\mymathindent}{24pt}                    % Indentation for math tabbing
 \newcommand{\equivs}{\ensuremath{\;\equiv\;}}       % Equivales with space
 \newcommand{\equivss}{\ensuremath{\;\;\equiv\;\;}}  % Equivales with double space
+\newcommand{\lors}{\ensuremath{\;\lor\;}}           % Disjunction with space
+\newcommand{\lorss}{\ensuremath{\;\;\lor\;\;}}      % Disjunction with double space
 \newcommand{\nequiv}{\ensuremath{\not\equiv}}       % Inequivalent
 \newcommand{\impl}{\ensuremath{\Rightarrow}}        % Implies
 \newcommand{\nimpl}{\ensuremath{\not\Rightarrow}}   % Does not imply
@@ -140,7 +142,7 @@ Present the new theorem and show how it is a more direct justification of the ca
 
 \section{Results}
 
-Lemma 1: $b \prec c \lor b = c \equiv b \preceq c$, where $\prec$ is the reflexive reduction of $\preceq$.
+Lemma 1: $b \prec c \lors b = c \equivss b \preceq c$, where $\prec$ is the reflexive reduction of $\preceq$.
 
 \textit{Proof}:
 \begin{tabbing}
