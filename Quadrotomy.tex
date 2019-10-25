@@ -18,20 +18,20 @@
 \usepackage{verbatim}
 
 % For Dr. Warford's computer
-%\begin{comment}
+\begin{comment}
 \setmainfont{Times}[ItalicFont    ={* Italic},
                     BoldFont      ={* Bold},
                     BoldItalicFont={* Bold Italic}]
 \setsansfont{Helvetica}
-%\end{comment}
+\end{comment}
 
 % For Alex's computer
-\begin{comment}
+%\begin{comment}
 \setmainfont{Times New Roman}[ItalicFont    ={* Italic},
                     BoldFont      ={* Bold},
                     BoldItalicFont={* Bold Italic}]
 \setsansfont{Arial}
-\end{comment}
+%\end{comment}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -41,7 +41,9 @@
 \newcommand{\equivss}{\ensuremath{\;\;\equiv\;\;}}  % Equivales with double space
 \newcommand{\lors}{\ensuremath{\;\lor\;}}           % Disjunction with space
 \newcommand{\lorss}{\ensuremath{\;\;\lor\;\;}}      % Disjunction with double space
-\newcommand{\nequiv}{\ensuremath{\not\equiv}}       % Inequivalent
+\newcommand{\lands}{\ensuremath{\;\land\;}}      % Conjunction with space
+\newcommand{\landss}{\ensuremath{\;\;\land\;\;}}      % Conjunction with double space
+\newcommand{\nequiv}{\ensuremath{\not\equivs}}       % Inequivalent
 \newcommand{\impl}{\ensuremath{\Rightarrow}}        % Implies
 \newcommand{\nimpl}{\ensuremath{\not\Rightarrow}}   % Does not imply
 \newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from
@@ -113,7 +115,7 @@
 \maketitle
 \begin{abstract}
 
-This paper uses a calculational system to formally prove a quadrotomy for partial orders $\preceq$, which states that any element $x$ of the partial order must be related to any other element $y$ by exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$, where $\prec$ is the reflexive reduction of $\preceq$ and $\incomp(x,y)$ is defined as $\incomp(x,y) \equivs \neg (x\preceq y) \land \neg (y\preceq x)$.
+This paper uses a calculational system to formally prove a quadrotomy for partial orders $\preceq$, which states that any element $x$ of the partial order must be related to any other element $y$ by exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$, where $\prec$ is the reflexive reduction of $\preceq$ and $\incomp(x,y)$ is defined as $\incomp(x,y) \equivs \neg (x\preceq y) \lands \neg (y\preceq x)$.
 The calculational system, developed by Dijkstra and Scholten and extended by Gries and Schneider in their text \textit{A Logical Approach to Discrete Math}, is based on only four inference rules -- Substitution, Leibniz, Equanimity, and Transitivity. 
 Inference rules in the older Hilbert-style systems, notably modus ponens, appear as theorems in this calculational deductive system, which is used to prove algorithm correctness in computer science.
 The theorem presented in this paper is a generalization of the trichotomy theorem for integers proved by Gries and Schneider, which states that any integer $n$ must be related to any other integer $m$ by exactly one of (a) $n<m$, (b) $n=m$, or (c) $m<n$.
@@ -147,39 +149,39 @@ Lemma 1: $b \prec c \lors b = c \equivss b \preceq c$, where $\prec$ is the refl
 \textit{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $b \prec c \lor b = c$\\
-	\> $=$  \>  \Hint{(14.15.4) Notation, $ \langle b, c \rangle \in \rho$ and $b \rho c$ are interchangeable notations.}\\[\lgap]
-	\> \>   $ \langle b, c \rangle \in \prec \lor b = c$\\
-	\> $=$  \>  \Hint{(14.15.3) Identity lemma, $ \langle x, y \rangle \in i_B \equiv x = y$}\\[\lgap]
-	\> \>   $ \langle b, c \rangle \in \prec \lor \langle b, c \rangle \in i_B$\\
-	\> $=$  \>  \Hint{(11.20) Axiom, Union, $v \in S \bigcup T \equiv v \in S \lor v \in T$}\\[\lgap]
-	\> \>   $ \langle b, c \rangle \in \prec \bigcup i_B$\\
-	\> $=$  \>  \Hint{(14.49b) If $\rho$ is a quasi order over a set B, then $\rho \bigcup i_B$ is a partial order}\\[\lgap]
+	\> \>  $b \prec c \lors b = c$\\
+	\> $=$  \>  \Hint{(14.15.4) Notation, $ \langle b, c \rangle \in \rho$ and $b \; \rho \; c$ are interchangeable notations.}\\[\lgap]
+	\> \>   $ \langle b, c \rangle \in \prec \lors b = c$\\
+	\> $=$  \>  \Hint{(14.15.3) Identity lemma, $ \langle x, y \rangle \in i_B \equivs x = y$}\\[\lgap]
+	\> \>   $ \langle b, c \rangle \in \prec \lors \langle b, c \rangle \in i_B$\\
+	\> $=$  \>  \Hint{(11.20) Axiom, Union, $v \in S \cup T \equivss v \in S \lors v \in T$}\\[\lgap]
+	\> \>   $ \langle b, c \rangle \in \prec \cup i_B$\\
+	\> $=$  \>  \Hint{(14.49b) If $\rho$ is a quasi order over a set B, then $\rho \cup i_B$ is a partial order}\\[\lgap]
 	\> \>   $ \langle b, c \rangle \in \preceq$\\
 	\> $=$  \>  \Hint{(14.15.4) Notation}\\[\lgap]
 	\> \>   $b \preceq c$\quad \myqed\\
 \end{tabbing}
 
-Lemma 2: $(p \lor q) \land \lnot (q \lor r) \equiv p \land \lnot q \land \lnot r$
+Lemma 2: $(p \lors q) \lands \lnot (q \lors r) \equivss p \lands \lnot q \lands \lnot r$
 
 \textit{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $(p \lor q) \land \lnot (q \lor r)$\\
-	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lor q) \equiv \lnot p \land \lnot q$}\\[\lgap]
-	\> \>   $(p \lor q) \land \lnot q \land \lnot r$\\
-	\> $=$  \>  \Hintfirst{(3.44a) Absorption, $p \land (\lnot p \lor q) \equiv (p \land q)$, with $p,q:= \lnot q,p$ and with (3.12)}\\
-	\>			 \>  \Hintlast{Double negation}\\[\lgap]
-	\> \>   $p \land \lnot q \land \lnot r$ \quad \myqed\\
+	\> \>  $(p \lors q) \lands \lnot (q \lors r)$\\
+	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lors q) \equivss \lnot p \lands \lnot q$}\\[\lgap]
+	\> \>   $(p \lors q) \lands \lnot q \lands \lnot r$\\
+	\> $=$  \>  \Hintfirst{(3.44a) Absorption, $p \lands (\lnot p \lors q) \equivss (p \lands q)$, with $p,\;q:= \lnot q,\;p$ and with}\\
+	\>			 \>  \Hintlast{(3.12) Double negation}\\[\lgap]
+	\> \>   $p \lands \lnot q \lands \lnot r$ \quad \myqed\\
 \end{tabbing}
 
-Lemma 3: $(p \impl q) \impl (p \land q \equiv p)$
+Lemma 3: $(p \impl q) \impl (p \lands q \equivs p)$
 
 \textit{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $p \land q \equiv p$\\
-	\> $=$  \>  \Hint{(3.60) Implication, $p \impl q \equiv p \land q \equiv p$}\\[\lgap]
+	\> \>  $p \lands q \equivs p$\\
+	\> $=$  \>  \Hint{(3.60) Implication, $p \impl q \equivss p \lands q \equivs p$}\\[\lgap]
 	\> \>   $p \impl q$\\
 	\> $\foll$  \>  \Hint{(3.71) Reflexivity of $\impl$, $p \impl p$}\\[\lgap]
 	\> \>   $p \impl q$ \quad \myqed\\
@@ -187,251 +189,244 @@ Lemma 3: $(p \impl q) \impl (p \land q \equiv p)$
 
 Lemma 4: $\rho$ is irreflexive $\impl (b \rho c \impl \lnot (b = c))$
 
-\textit{Proof by (4.4) Deduction}:
+\textit{Proof}: The proof is by (4.4) Deduction.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 	\> \>  $b \rho c \impl \lnot (b = c)$\\
-	\> $=$  \>  \Hint{(3.61) Contrapositive, $p \impl q \equiv \lnot q \impl \lnot p$, with (3.12) Double negation}\\[\lgap]
+	\> $=$  \>  \Hint{(3.61) Contrapositive, $p \impl q \equivs \lnot q \impl \lnot p$, with (3.12) Double negation}\\[\lgap]
 	\> \>   $b = c \impl \lnot (b \rho c)$\\
-	\> $=$  \>  \Hint{(3.84b) Substitution, $(e = f) \impl E^z_e \equiv (e = f) \impl E^z_f$}\\[\lgap]
+	\> $=$  \>  \Hint{(3.84b) Substitution, $(e = f) \impl E^z_e \equivs (e = f) \impl E^z_f$}\\[\lgap]
 	\> \>   $b = c \impl \lnot (b \rho b)$\\
-	\> $=$  \>  \Hintfirst{Assume the antecedent, $\rho$ is irreflexive, or $(\all b \dr \rb \lnot (b \rho b))$, with (9.16)}\\
-	\>			 \>  \Hintlast{Metatheorem, P is a theorem iff $(\all x \dr \rb P)$ is a theorem}\\[\lgap]
+	\> $=$  \>  \Hint{Assume the antecedent, $\rho$ is irreflexive, or $(\all b \dr \rb \lnot (b \rho b))$}\\[\lgap]
 	\> \>   $b = c \impl true$\\
-	\> $=$  \>  \Hint{(3.72) Right Zero of $\impl$, $p \impl true \equiv true$}\\[\lgap]
+	\> $=$  \>  \Hint{(3.72) Right Zero of $\impl$, $p \impl true \equivs true$}\\[\lgap]
 	\> \>   $true$ \quad \myqed\\
 \end{tabbing}
 
-Lemma 5: $\rho$ is antisymmetric $\land$ $\rho$ is reflexive $\impl (b \rho c \land c \rho b \equiv b = c)$
+Lemma 5: $\rho$ is antisymmetric $\lands$ $\rho$ is reflexive $\impl (b \rho c \lands c \rho b \equivs b = c)$
 
-\textit{Proof by (4.4) Deduction and (4.7) Mutual Implication}:
+\textit{Proof}: The proof is by (4.4) Deduction. We will prove the consequent, $(b \rho c \lands c \rho b \equivs b = c)$, using the conjuncts of the antecedent as theorems. We will prove the consequent using (4.7) Mutual implication.
 
-a. $b \rho c \land c \rho b \impl b = c$
+The proof in the first direction follows.
+
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $b \rho c \land c \rho b$\\
+	\> \>  $b \;\rho\; c \lands c \;\rho\; b$\\
 	\> $=$  \>  \Hintfirst{Assume the conjunct of the antecedent $\rho$ is antisymmetric, or}\\
-	\>			 \>  \Hintmid{$(\all b,c \dr \rb b \rho c \land c \rho b \impl b = c)$, with (9.16) Metatheorem, P is a theorem iff}\\
-	\>			 \>  \Hintlast{$(\all x \dr \rb P)$ is a theorem}\\[\lgap]
+	\>			 \>  \Hintlast{$(\all b,c \drrb b \;\rho\; c \lands c \;\rho\; b \impl b = c)$}\\[\lgap]
 	\> \>   $b = c$\\ 
 	\> $\impl$	\>  \Hint{(3.71) Reflexivity of $\impl$, $p \impl p$}\\[\lgap]
 	\> \>	$b = c$ \quad \myqed\\
 \end{tabbing}
 
-b. $b = c \impl b \rho c \land c \rho b$
-
-\textit{Proof by (4.4) Deduction}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $b \rho c \land c \rho b$\\
-	\> $=$  \>  \Hint{Assume the antecedent, $b = c$}\\[\lgap]
-	\> \>   $b \rho b \land b \rho b$\\
-	\> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p \land p \equiv p$}\\[\lgap]
-	\> \>   $b \rho b$\\
-	\> $=$  \>  \Hintfirst{Assume the conjunct of the antecedent $\rho$ is reflexive, or $(\all b \dr \rb b \rho b)$, with}\\
-	\>			 \>  \Hintlast{(9.16) Metatheorem, P is a theorem iff $(\all x \dr \rb P)$ is a theorem}\\[\lgap]
-	\> \>   $true$ \quad \myqed\\
-\end{tabbing}
-
-Theorem (a): $b \prec c \equiv \lnot(c \prec b \lor b = c \lor \incomp(b, c))$
-
-\textit{Proof by (4.4) Deduction}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $\lnot(c \prec b \lor b = c \lor \incomp(b, c))$\\
-	\> $=$  \>  \Hint{Lemma 1, $b \prec c \lor b = c \equiv b \preceq c$}\\[\lgap]
-	\> \>   $\lnot(c \preceq b \lor \incomp(b, c))$\\
-	\> $=$  \>  \Hint{(14.47.1) Definition, Incomparable, $\incomp(b, c) \equiv \lnot (b \preceq c) \land \lnot (c \preceq b)$}\\[\lgap]
-	\> \>   $\lnot (c \preceq b \lor (\lnot (b \preceq c) \land \lnot (c \preceq b)))$\\
-	\> $=$  \>  \Hint{(3.44b) Absorption, $p \lor (\lnot p \land q) \equiv p \lor q$}\\[\lgap]
-	\> \>   $\lnot (c \preceq b \lor \lnot (b \preceq c))$\\
-	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lor q) \equiv \lnot p \land \lnot q$, with (3.12) Double negation}\\[\lgap]
-	\> \>   $b \preceq c \land \lnot(c \preceq b)$\\
-	\> $=$  \>  \Hint{Lemma 1, twice}\\[\lgap]
-	\> \>   $(b \prec c \lor b = c) \land \lnot (c \prec b \lor b = c)$\\
-	\> $=$  \>  \Hint{Lemma 2, $(p \lor q) \land \lnot (q \lor r) \equiv p \land \lnot q \land \lnot r$}\\[\lgap]
-	\> \>   $b \prec c \land \lnot (b = c) \land \lnot (c \prec b)$\\
-	\> $=$  \>  \Hintfirst{Lemma 3, $(p \impl q) \impl (p \land q \equiv p)$, with $p, q := b \prec c, \lnot (c \prec b)$. The antecedent,}\\
-	\>			 \>  \Hintmid{$b \prec c \impl \lnot (c \prec b)$, is true by the definition of asymmetry and the fact that strict}\\
-	\>			 \>  \Hintlast{orders are asymmetric.}\\[\lgap]
-	\> \>  $b \prec c \land \lnot (b = c)$\\
-	\> $=$  \>  \Hintfirst{Lemma 3, with $p, q := b \prec c, \lnot (b = c)$. The antecedent, $b \prec c \impl \lnot (b = c)$, is}\\
-	\>			 \>  \Hintmid{true by Lemma 4, $\rho$ is irreflexive $\impl (b \rho c \impl \lnot (b = c))$, and the fact that strict}\\
-	\>			 \>  \Hintlast{orders are irreflexive.}\\[\lgap]
-	\> \>   $b \prec c$ \quad \myqed\\
-\end{tabbing}
-
-Theorem (b): $c \prec b \equiv \lnot(b \prec c \lor b = c \lor \incomp(b, c))$
-
-Since = and \textit{incomp} are symmetric, the proof of b is identical to that of a with $b, c := c, b$.\\
-
-Theorem (c): $b = c \equiv \lnot(b \prec c \lor c \prec b \lor \incomp(b, c))$
-
-\textit{Proof by (4.4) Deduction}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $\lnot (b \prec c \lor c \prec b \lor \incomp(b, c))$\\
-	\> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p \equiv p \lor p$}\\[\lgap]
-	\> \>   $\lnot (b \prec c \lor c \prec b \lor \incomp(b, c) \lor \incomp(b, c))$\\
-	\> $=$  \>  \Hint{(14.48.2), $\lnot (b \preceq c) \equiv c \prec b\lor \incomp(b, c)$, twice}\\[\lgap]
-	\> \>   $\lnot ( \lnot (b \preceq c) \lor \lnot (c \preceq b))$\\
-	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lor q) \equiv \lnot p \land \lnot q$, with (3.12) Double negation twice}\\[\lgap]
-	\> \>   $b \preceq c \land c \preceq b$\\
-	\> $=$  \>  \Hintfirst{Lemma 5, $\rho$ is antisymmetric $\land$ $\rho$ is reflexive $\impl (b \rho c \land c \rho b \equiv b = c)$, with the}\\
-	\>			 \>  \Hintlast{fact that partial orders are antisymmetric and reflexive}\\[\lgap]
-	\> \>   $b = c$ \quad \myqed\\
-\end{tabbing}
-
-Theorem (d): $\incomp(b, c) \equiv \lnot(b \prec c \lor c \prec b \lor b = c)$
-
-\textit{Proof by (4.4) Deduction}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $\lnot(b \prec c \lor c \prec b \lor b = c)$\\
-	\> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p \equiv p \lor p$}\\[\lgap]
-	\> \>   $\lnot(b \prec c \lor c \prec b \lor b = c \lor b = c)$\\
-	\> $=$  \>  \Hint{Lemma 1, $b \prec c \lor b = c \equiv b \preceq c$ twice}\\[\lgap]
-	\> \>   $\lnot (b \preceq c \lor c \preceq b)$\\
-	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lor q) \equiv \lnot p \land \lnot q$}\\[\lgap]
-	\> \>   $\lnot (b \preceq c) \land \lnot (c \preceq b)$\\
-	\> $=$  \>  \Hint{(14.47.1) Definition, Incomparable: $\incomp(b, c) \equiv \lnot(b \preceq c) \land \lnot(c \preceq b)$}\\[\lgap]
-	\> \>   $\incomp(b, c)$ \quad \myqed\\
-\end{tabbing}
-
-Four abbreviations for expressions will be introduced here to make the following proofs more concise. Note that replacing \textit{A}, \textit{B}, \textit{C}, and \textit{D} with $b \prec c, c \prec b, b = c,$ and $\incomp(b,c)$, in any order, will make the expressions identical to Theorems (a)-(d). However, the expressions in general suffice to describe a situtation in which exactly one of \textit{A}, \textit{B}, \textit{C}, and \textit{D} is true.
-
-$\alpha$. $A \equiv \lnot (B \lor C \lor D)$
-
-$\beta$.  $B \equiv \lnot (A \lor C \lor D)$
-
-$\gamma$. $C \equiv \lnot (A \lor B \lor D)$
-
-$\delta$. $D \equiv \lnot (A \lor B \lor C)$
-
-
-Theorem (e): $\alpha \land \beta \land \gamma \land \delta \impl A \lor B \lor C \lor D$
-
-\textit{Proof by (4.4) Deduction}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $A \lor B \lor C \lor D$\\
-	\> $=$  \>  \Hint{Assume conjunct $\alpha$ of the antecedent, $A \equiv \lnot (B \lor C \lor D)$}\\[\lgap]
-	\> \>   $ \lnot (B \lor C \lor D) \lor B \lor C \lor D$\\
-	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lor  \lnot p$}\\[\lgap]
-	\> \>   $true$ \quad \myqed\\
-\end{tabbing}
-
-Lemma 6: $\alpha \land \beta \land \gamma \land \delta \impl \lnot (A \land B \land C)$
-
-\textit{Proof by (4.4) Deduction}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $\lnot (A \land B \land C)$\\
-	\> $=$  \>  \Hint{(3.47a) De Morgan, $\lnot (p \land q) \equiv \lnot p \lor \lnot q$, twice}\\[\lgap]
-	\> \>   $\lnot A \lor \lnot B \lor \lnot C$\\
-	\> $=$  \>  \Hint{Assume conjunct $\alpha$ of the antecedent, $A \equiv \lnot (B \lor C \lor D)$, with (3.12) Double negation}\\[\lgap]
-	\> \>   $B \lor C \lor D \lor \lnot B \lor \lnot C$\\
-	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lor \lnot p$, twice}\\[\lgap]
-	\> \>   $true \lor true \lor D$\\
-	\> $=$  \>  \Hint{(3.29) Identity of $\lor$, $p \lor true \equiv true$}\\[\lgap]
-	\> \>   $true$ \quad \myqed\\
-\end{tabbing}
-
-Lemma 7: $\alpha \land \beta \land \gamma \land \delta \land \lnot D \impl (A \land \lnot B \land \lnot C \equiv A)$
-
-\textit{Proof by (4.4) Deduction}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $A \land  \lnot B \land \lnot C$\\
-	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equiv p$}\\[\lgap]
-	\> \>   $A \land \lnot B \land \lnot C \land true$\\
-	\> $=$  \>  \Hint{Assume conjunct $\lnot D$ of the antecedent}\\[\lgap]
-	\> \>   $A \land \lnot B \land \lnot C \land \lnot D$\\
-	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lor q) \equiv \lnot p \land \lnot q$, twice}\\[\lgap]
-	\> \>   $A \land \lnot (B \lor C \lor D)$\\
-	\> $=$  \>  \Hint{Assume conjunct $\alpha$ of the antecedent, $A \equiv \lnot (B \lor C \lor D)$}\\[\lgap]
-	\> \>   $A \land A$\\
-	\> $=$  \>  \Hint{(3.40) Idempotency of $\land$, $p \land p \equiv p$}\\[\lgap]
-	\> \>   $A$ \quad \myqed\\
-\end{tabbing}
-
-Lemma 8: $(p \equiv q \equiv r) \equiv (p \land q \land r) \lor (p \land \lnot q \land \lnot r) \lor (\lnot p \land q \land \lnot r) \lor (\lnot p \land \lnot q \land r)$
+The proof in the second direction, $b = c \impl b \rho c \lands c \rho b$, is done by another application of (4.4) Deduction.
 
 \textit{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $p \equiv q \equiv r$\\
-	\> $=$  \>  \Hint{(3.52) Equivalence, $p \equiv q \equiv (p \land q) \lor (\lnot p \land \lnot q)$}\\[\lgap]
-	\> \>   $(p \land q) \lor (\lnot p \land \lnot q)\equiv r$\\
-	\> $=$  \>  \Hint{(3.52) Equivalence}\\[\lgap]
-	\> \>   $(((p \land q) \lor (\lnot p \land \lnot q)) \land r) \lor (\lnot ((p \land q) \lor (\lnot p \land \lnot q)) \land \lnot r)$\\
-	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \land (q \lor r) \equiv (p \land q) \lor (p \land r)$}\\[\lgap]
-	\> \>   $(p \land q \land r) \lor (\lnot p \land \lnot q \land r) \lor (\lnot ((p \land q) \lor (\lnot p \land \lnot q)) \land \lnot r)$\\
-	\> $=$  \>  \Hint{(3.52) Equivalence}\\[\lgap]
-	\> \>  $(p \land q \land r) \lor (\lnot p \land \lnot q \land r) \lor (\lnot (p \equiv q) \land \lnot r)$\\
-	\> $=$  \>  \Hint{(3.10) Definition of $\nequiv$, $(p \nequiv q) \equiv \lnot (p \equiv q)$}\\[\lgap]
-	\> \>   $(p \land q \land r) \lor (\lnot p \land \lnot q \land r) \lor ((p \nequiv q) \land \lnot r)$\\
-	\> $=$  \>  \Hint{(3.46) Excusive or, $p \nequiv q \equiv (\lnot p \land q) \lor (p \land \lnot q)$}\\[\lgap]
-	\> \>   $(p \land q \land r) \lor (\lnot p \land \lnot q \land r) \lor (((\lnot p \land q) \lor (p \land \lnot q)) \land \lnot r)$\\
-	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$}\\[\lgap]
-	\> \>   $(p \land q \land r) \lor (\lnot p \land \lnot q \land r) \lor (p \land \lnot q \land \lnot r) \lor (\lnot p \land q \land \lnot r)$\\
-	\> $=$  \>  \Hint{(3.24) Symmetry of $\lor$}\\[\lgap]
-	\> \>   $(p \land q \land r) \lor (p \land \lnot q \land \lnot r) \lor (\lnot p \land q \land \lnot r) \lor (\lnot p \land \lnot q \land r) $ \quad \myqed\\
+	\> \>  $b \;\rho\; c \lands c \;\rho\; b$\\
+	\> $=$  \>  \Hint{Assume the antecedent, $b = c$}\\[\lgap]
+	\> \>   $b \;\rho\; b \lands b \;\rho\; b$\\
+	\> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p \lands p \equivs p$}\\[\lgap]
+	\> \>   $b \;\rho\; b$\\
+	\> $=$  \>  \Hint{Assume the conjunct of the antecedent $\rho$ is reflexive, or $(\all b \drrb b \;\rho\; b)$}\\[\lgap]
+	\> \>   $true$ \quad \myqed\\
 \end{tabbing}
 
-Lemma 9: $\incomp(b,c) \equiv false$, where $\incomp(b,c)$ refers to b and c being incomparable under $\le$.
+Theorem (a): $b \prec c \equivss \lnot(c \prec b \lors b = c \lors \incomp(b, c))$
 
-\textit{Proof by (4.4) Deduction}:
+\textit{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $\lnot(c \prec b \lors b = c \lors \incomp(b, c))$\\
+	\> $=$  \>  \Hint{Lemma 1, $b \prec c \lors b = c \equivss b \preceq c$}\\[\lgap]
+	\> \>   $\lnot(c \preceq b \lors \incomp(b, c))$\\
+	\> $=$  \>  \Hint{(14.47.1) Definition, Incomparable, $\incomp(b, c) \equivss \lnot (b \preceq c) \lands \lnot (c \preceq b)$}\\[\lgap]
+	\> \>   $\lnot (c \preceq b \lors (\lnot (b \preceq c) \lands \lnot (c \preceq b)))$\\
+	\> $=$  \>  \Hint{(3.44b) Absorption, $p \lors (\lnot p \lands q) \equivss p \lors q$}\\[\lgap]
+	\> \>   $\lnot (c \preceq b \lors \lnot (b \preceq c))$\\
+	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lors q) \equivs \lnot p \lands \lnot q$, with (3.12) Double negation}\\[\lgap]
+	\> \>   $b \preceq c \lands \lnot(c \preceq b)$\\
+	\> $=$  \>  \Hint{Lemma 1, twice}\\[\lgap]
+	\> \>   $(b \prec c \lors b = c) \landss \lnot (c \prec b \lors b = c)$\\
+	\> $=$  \>  \Hint{Lemma 2, $(p \lors q) \lands \lnot (q \lors r) \equivss p \lands \lnot q \lands \lnot r$}\\[\lgap]
+	\> \>   $b \prec c \lands \lnot (b = c) \lands \lnot (c \prec b)$\\
+	\> $=$  \>  \Hintfirst{Lemma 3, $(p \impl q) \impl (p \lands q \equivs p)$, with $p,\;q := b \prec c,\;\lnot (c \prec b)$. The antecedent,}\\
+	\>			 \>  \Hintmid{$b \prec c \impl \lnot (c \prec b)$, is true by the definition of asymmetry and the fact that strict}\\
+	\>			 \>  \Hintlast{orders are asymmetric.}\\[\lgap]
+	\> \>  $b \prec c \lands \lnot (b = c)$\\
+	\> $=$  \>  \Hintfirst{Lemma 3, with $p,\;q := b \prec c,\;\lnot (b = c)$. The antecedent, $b \prec c \impl \lnot (b = c)$, is}\\
+	\>			 \>  \Hintmid{true by Lemma 4, $\rho$ is irreflexive $\impl (b \;\rho\; c \impl \lnot (b = c))$, and the fact that strict}\\
+	\>			 \>  \Hintlast{orders are irreflexive.}\\[\lgap]
+	\> \>   $b \prec c$ \quad \myqed\\
+\end{tabbing}
+
+Theorem (b): $c \prec b \equivss \lnot(b \prec c \lors b = c \lors \incomp(b, c))$
+
+Since = and \textit{incomp} are symmetric, the proof of (b) is identical to that of (a) with $b,\;c := c,\;b$.\\
+
+Theorem (c): $b = c \equivss \lnot(b \prec c \lors c \prec b \lors \incomp(b, c))$
+
+\textit{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $\lnot (b \prec c \lors c \prec b \lors \incomp(b, c))$\\
+	\> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p \equivs p \lors p$}\\[\lgap]
+	\> \>   $\lnot (b \prec c \lors c \prec b \lors \incomp(b, c) \lors \incomp(b, c))$\\
+	\> $=$  \>  \Hint{(14.48.2), $\lnot (b \preceq c) \equivss c \prec b\lors \incomp(b, c)$, twice}\\[\lgap]
+	\> \>   $\lnot ( \lnot (b \preceq c) \lors \lnot (c \preceq b))$\\
+	\> $=$  \>  \Hint{(3.47a) De Morgan, $\lnot (p \lands q) \equivs \lnot p \lors \lnot q$, with (3.12) Double negation}\\[\lgap]
+	\> \>   $b \preceq c \lands c \preceq b$\\
+	\> $=$  \>  \Hintfirst{Lemma 5, $\rho$ is antisymmetric $\lands$ $\rho$ is reflexive $\impl (b \;\rho\; c \lands c \;\rho\; b \equivss b = c)$,}\\
+	\>			 \>  \Hintlast{with the fact that partial orders are antisymmetric and reflexive}\\[\lgap]
+	\> \>   $b = c$ \quad \myqed\\
+\end{tabbing}
+
+Theorem (d): $\incomp(b, c) \equivss \lnot(b \prec c \lors c \prec b \lors b = c)$
+
+\textit{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $\lnot(b \prec c \lors c \prec b \lors b = c)$\\
+	\> $=$  \>  \Hint{(3.26) Idempotency of $\lor$, $p \equivs p \lors p$}\\[\lgap]
+	\> \>   $\lnot(b \prec c \lors c \prec b \lors b = c \lors b = c)$\\
+	\> $=$  \>  \Hint{Lemma 1, $b \prec c \lors b = c \equivss b \preceq c$ twice}\\[\lgap]
+	\> \>   $\lnot (b \preceq c \lors c \preceq b)$\\
+	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lors q) \equivs \lnot p \lands \lnot q$}\\[\lgap]
+	\> \>   $\lnot (b \preceq c) \lands \lnot (c \preceq b)$\\
+	\> $=$  \>  \Hint{(14.47.1) Definition, Incomparable: $\incomp(b, c) \equivss \lnot(b \preceq c) \lands \lnot(c \preceq b)$}\\[\lgap]
+	\> \>   $\incomp(b, c)$ \quad \myqed\\
+\end{tabbing}
+
+Four abbreviations for expressions will be introduced here to make the following proofs more concise. Note that replacing \textit{A}, \textit{B}, \textit{C}, and \textit{D} with $b \prec c,\; c \prec b,\; b = c,$ and $\incomp(b,c)$, in any order, will make the expressions identical to Theorems (a)-(d). However, the expressions in general describe any situtation in which exactly one of \textit{A}, \textit{B}, \textit{C}, and \textit{D} is true.
+
+$\alpha$. $A \equivss \lnot (B \lors C \lors D)$
+
+$\beta$.  $B \equivss \lnot (A \lors C \lors D)$
+
+$\gamma$. $C \equivss \lnot (A \lors B \lors D)$
+
+$\delta$. $D \equivss \lnot (A \lors B \lors C)$\\
+
+Theorem (e): $\alpha \lands \beta \lands \gamma \lands \delta \;\;\impl\;\; A \lors B \lors C \lors D$
+
+\textit{Proof}: The proof is by (4.4) Deduction.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $A \lors B \lors C \lors D$\\
+	\> $=$  \>  \Hint{Assume conjunct $\alpha$ of the antecedent, $A \equivss \lnot (B \lors C \lors D)$}\\[\lgap]
+	\> \>   $ \lnot (B \lors C \lors D) \lors B \lors C \lors D$\\
+	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lors  \lnot p$}\\[\lgap]
+	\> \>   $true$ \quad \myqed\\
+\end{tabbing}
+
+Lemma 6: $\alpha \lands \beta \lands \gamma \lands \delta \;\;\impl\;\; \lnot (A \lands B \lands C)$
+
+\textit{Proof}: The proof is by (4.4) Deduction.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $\lnot (A \lands B \lands C)$\\
+	\> $=$  \>  \Hint{(3.47a) De Morgan, $\lnot (p \lands q) \equivs \lnot p \lors \lnot q$, twice}\\[\lgap]
+	\> \>   $\lnot A \lors \lnot B \lors \lnot C$\\
+	\> $=$  \>  \Hint{Assume conjunct $\alpha$, $A \equivss \lnot (B \lors C \lors D)$, with (3.12) Double negation}\\[\lgap]
+	\> \>   $B \lors C \lors D \lors \lnot B \lors \lnot C$\\
+	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lors \lnot p$, twice}\\[\lgap]
+	\> \>   $true \lors true \lors D$\\
+	\> $=$  \>  \Hint{(3.29) Identity of $\lor$, $p \lors true \equivs true$}\\[\lgap]
+	\> \>   $true$ \quad \myqed\\
+\end{tabbing}
+
+Lemma 7: $\alpha \lands \beta \lands \gamma \lands \delta \;\;\impl\;\; (A \lands \lnot B \lands \lnot C \equivs A)$
+
+\textit{Proof}: The proof is by (4.4) Deduction.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $A \lands  \lnot B \lands \lnot C$\\
+	\> $=$  \>  \Hint{Assume conjunct $\alpha$ of the antecedent, $A \equivss \lnot (B \lors C \lors D)$}\\[\lgap]
+	\> \>   $\lnot (B \lors C \lors D) \lands \lnot B \lands \lnot C$\\
+	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lors q) \equivs \lnot p \lands \lnot q$, twice}\\[\lgap]
+	\> \>   $\lnot B \lands \lnot C \lands \lnot D \lands \lnot B \lands \lnot C$\\
+	\> $=$  \>  \Hint{(3.40) Idempotency of $\land$, $p \lands p \equivs p$}\\[\lgap]
+	\> \>   $\lnot B \lands \lnot C \lands \lnot D$\\
+	\> $=$  \>  \Hint{Assume conjunct $\alpha$ of the antecedent, $A \equivss \lnot (B \lors C \lors D)$}\\[\lgap]
+	\> \>   $A$ \quad \myqed\\
+\end{tabbing}
+
+Lemma 8: $(p \equiv q \equiv r) \equivss (p \land q \land r) \lors (p \land \lnot q \land \lnot r) \lors (\lnot p \land q \land \lnot r) \lors (\lnot p \land \lnot q \land r)$
+
+\textit{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $p \equivs q \equivs r$\\
+	\> $=$  \>  \Hint{(3.52) Equivalence, $p \equivs q \equivss (p \lands q) \lors (\lnot p \lands \lnot q)$}\\[\lgap]
+	\> \>   $(p \land q) \lors (\lnot p \land \lnot q)\equivss r$\\
+	\> $=$  \>  \Hint{(3.52) Equivalence}\\[\lgap]
+	\> \>   $(((p \land q) \lors (\lnot p \land \lnot q)) \lands r) \lorss (\lnot ((p \land q) \lors (\lnot p \land \lnot q)) \lands \lnot r)$\\
+	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \lands (q \lor r) \equivss (p \land q) \lors (p \land r)$}\\[\lgap]
+	\> \>   $(p \land q \land r) \lorss (\lnot p \land \lnot q \land r) \lorss (\lnot ((p \land q) \lors (\lnot p \land \lnot q)) \lands \lnot r)$\\
+	\> $=$  \>  \Hint{(3.52) Equivalence}\\[\lgap]
+	\> \>  $(p \lands q \land r) \lors (\lnot p \land \lnot q \land r) \lors (\lnot (p \equivs q) \lands \lnot r)$\\
+	\> $=$  \>  \Hint{(3.10) Definition of $\nequiv$, $(p \nequiv q) \equivss \lnot (p \equivs q)$}\\[\lgap]
+	\> \>   $(p \land q \land r) \lors (\lnot p \land \lnot q \land r) \lors ((p \nequiv q) \lands \lnot r)$\\
+	\> $=$  \>  \Hint{(3.46) Excusive or, $p \nequiv q \equivs (\lnot p \lands q) \lors (p \lands \lnot q)$}\\[\lgap]
+	\> \>   $(p \land q \land r) \lors (\lnot p \land \lnot q \land r) \lors (((\lnot p \land q) \lors (p \land \lnot q)) \lands \lnot r)$\\
+	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$}\\[\lgap]
+	\> \>   $(p \land q \land r) \lors (\lnot p \land \lnot q \land r) \lors (p \land \lnot q \land \lnot r) \lors (\lnot p \land q \land \lnot r)$\\
+	\> $=$  \>  \Hint{(3.24) Symmetry of $\lors$}\\[\lgap]
+	\> \>   $(p \land q \land r) \lors (p \land \lnot q \land \lnot r) \lors (\lnot p \land q \land \lnot r) \lors (\lnot p \land \lnot q \land r) $ \quad \myqed\\
+\end{tabbing}
+
+Lemma 9: $\incomp(b,c) \equivs false$, where $\incomp(b,c)$ refers to b and c being incomparable under $\le$.
+
+\textit{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 	\> \>  $\incomp(b,c)$\\
-	\> $=$  \>  \Hintfirst{(14.47.1) Definition, Incomparable, $\incomp(b,c)  \equiv  \lnot (b \preceq c) \land  \lnot (c \preceq b)$, where}\\
+	\> $=$  \>  \Hintfirst{(14.47.1) Definition, Incomparable, $\incomp(b,c)  \equivss  \lnot (b \preceq c) \lands  \lnot (c \preceq b)$, where}\\
 	\>			\>  \Hintlast{the partial order is $\le$}\\[\lgap]
-	\> \>   $\lnot (b \le c) \land \lnot (c \le b)$\\
-	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lor q) \equiv \lnot p \land \lnot q$}\\[\lgap]
-	\> \>   $\lnot (b \le c \lor c \le b)$\\
-	\> $=$  \>  \Hintfirst{(14.50) Definition, Total Order: A partial order $⪯$ over \textit{B} is called a total or linear}\\
-	\>			\>  \Hintmid{order if $(\all b,c \dr \rb b \preceq c \lor c \preceq b)$, with (9.16) Metatheorem, P is a theorem iff}\\
-	\>			\>	\Hintlast{$(\all x \dr \rb P)$ is a theorem, and the fact that $ \le $ is a total order}\\[\lgap]
+	\> \>   $\lnot (b \le c) \lands \lnot (c \le b)$\\
+	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lors q) \equivs \lnot p \lands \lnot q$}\\[\lgap]
+	\> \>   $\lnot (b \le c \lors c \le b)$\\
+	\> $=$  \>  \Hintfirst{(14.50) Definition, Total Order: A partial order $\preceq$ over \textit{B} is called a total or linear}\\
+	\>			\>  \Hintlast{order if $(\all b,c \drrb b \preceq c \lors c \preceq b)$, with the fact that $ \le $ is a total order}\\[\lgap]
 	\> \>   $\lnot true$\\
 	\> $=$  \>  \Hint{(3.8) Definition of false}\\[\lgap]
 	\> \>   $false$\quad \myqed\\
 \end{tabbing}
 
-(15.44) Trichotomy: $(a<b \equiv a=b \equiv a>b) \land \lnot (a<b \land a=b \land a>b)$
+(15.44) Trichotomy: $(a<b \equivs a=b \equivs a>b) \landss \lnot (a<b \lands a=b \lands a>b)$
 
 \textit{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $(a<b \equiv a=b \equiv a>b) \land \lnot (a<b \land a=b \land a>b)$\\
-	\> $=$  \>  \Hintfirst{Lemma 6, $\alpha \land \beta \land \gamma \land \delta\impl\lnot (A \lor B \lor C)$ with $A,B,C,D:=a<b,a=b,a>b,\incomp(a,b)$.}\\
-	\>			 \>  \Hintlast{The antecedent is true by Theorems (a)-(d)}\\[\lgap]
-	\> \>  $(a<b \equiv a=b \equiv a>b) \land true$\\
-	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equiv p$}\\[\lgap]
-	\> \>  $(a<b \equiv a=b \equiv a>b)$\\
-	\> $=$  \>  \Hint{Lemma 8, with $p,q,r:=a<b,a=b,a>b$}\\[\lgap]
-	\> \>  $(a<b \land a=b \land a>b) \lor (a<b \land \lnot (a=b) \land \lnot (a>b)) \lor$\\
-	\>	 \> $(\lnot (a<b) \land a=b \land \lnot (a>b)) \lor (\lnot (a<b) \land \lnot (a=b) \land a>b)$\\
-	\> $=$  \>  \Hint{Lemma 6, as in step 1, but with (3.12) Double negation}\\[\lgap]
-	\> \>  $false \lor (a<b \land \lnot (a=b) \land \lnot (a>b)) \lor (\lnot (a<b) \land a=b \land \lnot (a>b)) \lor$\\
-	\> \> $(\lnot (a<b) \land \lnot (a=b) \land a>b)$\\
-	\> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p \lor false \equiv p$}\\[\lgap]
-	\> \>  $(a<b \land \lnot (a=b) \land \lnot (a>b)) \lor (\lnot (a<b) \land a=b \land \lnot (a>b)) \lor$\\
-	\> \>  $(\lnot (a<b) \land \lnot (a=b) \land a>b)$\\
-	\> $=$  \>  \Hintfirst{Lemma 7, $\alpha \land \beta \land \gamma \land \delta \land \lnot D\impl(A \land \lnot B \land \lnot C \equiv A)$, with}\\
-	\>			 \>  \Hintmid{$A,B,C,D:=a<b,a=b,a>b,\incomp(a,b)$. The conjuncts $\alpha$ through $\delta$ of the}\\
-	\>			 \>  \Hintmid{antecedent are satisfied by Theorems (a)-(d), while the conjunct $\lnot D$ is satisfied by}\\
-	\>			 \>  \Hintlast{Lemma 9, $\incomp(b,c) \equiv false$ under $\le$}\\[\lgap]
-	\> \>  $a<b \lor (\lnot (a<b) \land a=b \land \lnot (a>b)) \lor (\lnot (a<b) \land \lnot (a=b) \land a>b)$\\
-	\> $=$  \>  \Hintfirst{Lemma 7, with $A,B,C,D:=a=b,a<b,a>b,\incomp(a,b)$. The conjuncts of}\\
+	\> \>  $(a<b \equivs a=b \equivs a>b) \landss \lnot (a<b \lands a=b \lands a>b)$\\
+	\> $=$  \>  \Hintfirst{Lemma 6, $\alpha \lands \beta \lands \gamma \lands \delta \;\;\impl\;\; \lnot (A \lands B \lands C)$ with $A,\;B,\;C,\;D:=a<b,\;a=b$,}\\
+	\>			 \>  \Hintlast{$\;a>b,\;\incomp(a,b)$. The antecedent is true by Theorems (a)-(d)}\\[\lgap]
+	\> \>  $(a<b \equivs a=b \equivs a>b) \lands true$\\
+	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \lands true \equivs p$}\\[\lgap]
+	\> \>  $(a<b \equivs a=b \equivs a>b)$\\
+	\> $=$  \>  \Hint{Lemma 8, with $p,\;q,\;r:=a<b,\;a=b,\;a>b$}\\[\lgap]
+	\> \>  $(a<b \lands a=b \lands a>b) \lorss (a<b \lands \lnot (a=b) \lands \lnot (a>b)) \lorss$\\
+	\>	 \> $(\lnot (a<b) \lands a=b \lands \lnot (a>b)) \lorss (\lnot (a<b) \lands \lnot (a=b) \lands a>b)$\\
+	\> $=$  \>  \Hint{Lemma 6 as in step 1, but with (3.12) Double negation}\\[\lgap]
+	\> \>  $false \lorss (a<b \lands \lnot (a=b) \lands \lnot (a>b)) \lorss (\lnot (a<b) \lands a=b \lands \lnot (a>b)) \lorss$\\
+	\> \> $(\lnot (a<b) \lands \lnot (a=b) \lands a>b)$\\
+	\> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p \lors false \equivs p$}\\[\lgap]
+	\> \>  $(a<b \lands \lnot (a=b) \lands \lnot (a>b)) \lorss (\lnot (a<b) \lands a=b \lands \lnot (a>b)) \lorss$\\
+	\> \>  $(\lnot (a<b) \lands \lnot (a=b) \lands a>b)$\\
+	\> $=$  \>  \Hintfirst{Lemma 7, $\alpha \lands \beta \lands \gamma \lands \delta \;\;\impl\;\;(A \lands \lnot B \lands \lnot C \equivs A)$, with}\\
+	\>			 \>  \Hintmid{$A,\;B,\;C,\;D:=a<b,\;a=b,\;a>b,\;\incomp(a,b)$. The conjuncts of the antecedent}\\
+	\>			 \>  \Hintlast{are satisfied by Theorems (a)-(d)}\\[\lgap]
+	\> \>  $a<b \lorss (\lnot (a<b) \lands a=b \lands \lnot (a>b)) \lorss (\lnot (a<b) \lands \lnot (a=b) \lands a>b)$\\
+	\> $=$  \>  \Hintfirst{Lemma 7, with $A,\;B,\;C,\;D:=a=b,\;a<b,\;a>b,\;\incomp(a,b)$. The conjuncts of}\\
 	\>			 \>  \Hintmid{the antecedent are satisfied as in the previous step. Note that the expressions}\\
 	\>			 \>  \Hintlast{replacing A and B are swapped compared to the previous step}\\[\lgap]
-	\> \>  $a<b \lor a=b \lor (\lnot (a<b) \land \lnot (a=b) \land a>b)$\\
-	\> $=$  \>  \Hintfirst{Lemma 7, with $A,B,C,D:=a<b,a=b,a>b,\incomp(a,b)$. The conjuncts of}\\
+	\> \>  $a<b \lorss a=b \lorss (\lnot (a<b) \lands \lnot (a=b) \lands a>b)$\\
+	\> $=$  \>  \Hintfirst{Lemma 7, with $A,\;B,\;C,\;D:=a<b,\;a=b,\;a>b,\;\incomp(a,b)$. The conjuncts of}\\
 	\>			 \>  \Hintmid{the antecedent are satisfied as in the previous step. Note that the expressions are}\\
 	\>			 \>  \Hintlast{again swapped to make the lemma apply to the final disjunct}\\[\lgap]
-	\> \>  $a<b \lor a=b \lor a>b$\\
-	\> $=$  \>  \Hint{Theorem d with $\preceq := \le$, with (3.12) Double negation}\\[\lgap]
+	\> \>  $a<b \lors a=b \lors a>b$\\
+	\> $=$  \>  \Hint{Theorem (d) with $\preceq := \le$, with (3.12) Double negation}\\[\lgap]
 	\> \>  $\lnot \incomp(a,b)$\\
 	\> $=$  \>  \Hint{Lemma 9}\\[\lgap]
 	\> \>  $true$ \quad \myqed\\

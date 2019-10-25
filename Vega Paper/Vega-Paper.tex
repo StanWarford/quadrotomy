@@ -15,6 +15,7 @@
 \usepackage{paralist}
 \usepackage{ellipsis}
 \usepackage{array}
+\usepackage{verbatim}
 
 %\usepackage[publication]{optional}
 \usepackage[complete]{optional}
@@ -32,11 +33,22 @@
 \newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from
 
 \defaultfontfeatures{Mapping=tex-text}
+% For Dr. Warford's computer
+\begin{comment}
 \setmainfont{Times}[ItalicFont    ={* Italic},
                     BoldFont      ={* Bold},
                     BoldItalicFont={* Bold Italic}]
 \setsansfont{Helvetica}
+\end{comment}
 \setmonofont[Scale=.95]{Courier}
+
+% For Alex's computer
+%\begin{comment}
+\setmainfont{Times New Roman}[ItalicFont    ={* Italic},
+                    BoldFont      ={* Bold},
+                    BoldItalicFont={* Bold Italic}]
+\setsansfont{Arial}
+%\end{comment}
 
 % Macros for Temporal Operators
 \newcommand{\Until}{\;\mathcal{U}\;}
