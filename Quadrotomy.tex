@@ -18,20 +18,20 @@
 \usepackage{verbatim}
 
 % For Dr. Warford's computer
-\begin{comment}
+%\begin{comment}
 \setmainfont{Times}[ItalicFont    ={* Italic},
                     BoldFont      ={* Bold},
                     BoldItalicFont={* Bold Italic}]
 \setsansfont{Helvetica}
-\end{comment}
+%\end{comment}
 
 % For Alex's computer
-%\begin{comment}
+\begin{comment}
 \setmainfont{Times New Roman}[ItalicFont    ={* Italic},
                     BoldFont      ={* Bold},
                     BoldItalicFont={* Bold Italic}]
 \setsansfont{Arial}
-%\end{comment}
+\end{comment}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -151,13 +151,13 @@ Lemma 1: $b \prec c \lors b = c \equivss b \preceq c$, where $\prec$ is the refl
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 	\> \>  $b \prec c \lors b = c$\\
 	\> $=$  \>  \Hint{(14.15.4) Notation, $ \langle b, c \rangle \in \rho$ and $b \; \rho \; c$ are interchangeable notations.}\\[\lgap]
-	\> \>   $ \langle b, c \rangle \in \prec \lors b = c$\\
-	\> $=$  \>  \Hint{(14.15.3) Identity lemma, $ \langle x, y \rangle \in i_B \equivs x = y$}\\[\lgap]
-	\> \>   $ \langle b, c \rangle \in \prec \lors \langle b, c \rangle \in i_B$\\
-	\> $=$  \>  \Hint{(11.20) Axiom, Union, $v \in S \cup T \equivss v \in S \lors v \in T$}\\[\lgap]
-	\> \>   $ \langle b, c \rangle \in \prec \cup i_B$\\
+	\> \>   $ \langle b, c \rangle \in\; \prec \lors b = c$\\
+	\> $=$  \>  \Hint{(14.15.3) Identity lemma, $ \langle x, y \rangle \in\; i_B \equivs x = y$}\\[\lgap]
+	\> \>   $ \langle b, c \rangle \in\; \prec \lors \langle b, c \rangle \in i_B$\\
+	\> $=$  \>  \Hint{(11.20) Axiom, Union, $v \in\; S \cup T \equivss v \in S \lors v \in T$}\\[\lgap]
+	\> \>   $ \langle b, c \rangle \in\; \prec \cup\; i_B$\\
 	\> $=$  \>  \Hint{(14.49b) If $\rho$ is a quasi order over a set B, then $\rho \cup i_B$ is a partial order}\\[\lgap]
-	\> \>   $ \langle b, c \rangle \in \preceq$\\
+	\> \>   $ \langle b, c \rangle \in\; \preceq$\\
 	\> $=$  \>  \Hint{(14.15.4) Notation}\\[\lgap]
 	\> \>   $b \preceq c$\quad \myqed\\
 \end{tabbing}
@@ -205,21 +205,19 @@ Lemma 4: $\rho$ is irreflexive $\impl (b \rho c \impl \lnot (b = c))$
 
 Lemma 5: $\rho$ is antisymmetric $\lands$ $\rho$ is reflexive $\impl (b \rho c \lands c \rho b \equivs b = c)$
 
-\textit{Proof}: The proof is by (4.4) Deduction. We will prove the consequent, $(b \rho c \lands c \rho b \equivs b = c)$, using the conjuncts of the antecedent as theorems. We will prove the consequent using (4.7) Mutual implication.
+\textit{Proof}: The proof is by (4.4) Deduction, \textit{i.e.}, prove the consequent, $b \rho c \lands c \rho b \equivs b = c$, assuming the conjuncts of the antecedent.
 
-The proof in the first direction follows.
+Using (4.7) Mutual implication, the proof of $b \rho c \lands c \rho b \impl b = c$ follows.
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 	\> \>  $b \;\rho\; c \lands c \;\rho\; b$\\
-	\> $=$  \>  \Hintfirst{Assume the conjunct of the antecedent $\rho$ is antisymmetric, or}\\
+	\> $\impl$  \>  \Hintfirst{Assume the conjunct of the antecedent $\rho$ is antisymmetric, or}\\
 	\>			 \>  \Hintlast{$(\all b,c \drrb b \;\rho\; c \lands c \;\rho\; b \impl b = c)$}\\[\lgap]
-	\> \>   $b = c$\\ 
-	\> $\impl$	\>  \Hint{(3.71) Reflexivity of $\impl$, $p \impl p$}\\[\lgap]
-	\> \>	$b = c$ \quad \myqed\\
+	\> \>   $b = c$ \quad \myqed\\
 \end{tabbing}
 
-The proof in the second direction, $b = c \impl b \rho c \lands c \rho b$, is done by another application of (4.4) Deduction.
+The proof of $b = c \impl b \rho c \lands c \rho b$ is by (4.4) Deduction.
 
 \textit{Proof}:
 \begin{tabbing}
@@ -251,9 +249,8 @@ Theorem (a): $b \prec c \equivss \lnot(c \prec b \lors b = c \lors \incomp(b, c)
 	\> \>   $(b \prec c \lors b = c) \landss \lnot (c \prec b \lors b = c)$\\
 	\> $=$  \>  \Hint{Lemma 2, $(p \lors q) \lands \lnot (q \lors r) \equivss p \lands \lnot q \lands \lnot r$}\\[\lgap]
 	\> \>   $b \prec c \lands \lnot (b = c) \lands \lnot (c \prec b)$\\
-	\> $=$  \>  \Hintfirst{Lemma 3, $(p \impl q) \impl (p \lands q \equivs p)$, with $p,\;q := b \prec c,\;\lnot (c \prec b)$. The antecedent,}\\
-	\>			 \>  \Hintmid{$b \prec c \impl \lnot (c \prec b)$, is true by the definition of asymmetry and the fact that strict}\\
-	\>			 \>  \Hintlast{orders are asymmetric.}\\[\lgap]
+	\> $=$  \>  \Hintfirst{Lemma 3, $(p \impl q) \impl (p \lands q \equivs p)$, with $p,\;q := b \prec c,\;\lnot (c \prec b)$. The antecedent}\\
+	\>			 \>  \Hintlast{is true because strict orders are asymmetric.}\\[\lgap]
 	\> \>  $b \prec c \lands \lnot (b = c)$\\
 	\> $=$  \>  \Hintfirst{Lemma 3, with $p,\;q := b \prec c,\;\lnot (b = c)$. The antecedent, $b \prec c \impl \lnot (b = c)$, is}\\
 	\>			 \>  \Hintmid{true by Lemma 4, $\rho$ is irreflexive $\impl (b \;\rho\; c \impl \lnot (b = c))$, and the fact that strict}\\
@@ -263,7 +260,7 @@ Theorem (a): $b \prec c \equivss \lnot(c \prec b \lors b = c \lors \incomp(b, c)
 
 Theorem (b): $c \prec b \equivss \lnot(b \prec c \lors b = c \lors \incomp(b, c))$
 
-Since = and \textit{incomp} are symmetric, the proof of (b) is identical to that of (a) with $b,\;c := c,\;b$.\\
+Because = and \textit{incomp} are symmetric, the proof of (b) is identical to that of (a) with $b,\;c := c,\;b$.\\
 
 Theorem (c): $b = c \equivss \lnot(b \prec c \lors c \prec b \lors \incomp(b, c))$
 
