@@ -231,7 +231,7 @@ The proof of $b = c \impl b \rho c \lands c \rho b$ is by (4.4) Deduction.
 	\> \>   $true$ \quad \myqed\\
 \end{tabbing}
 
-Theorem (a): $b \prec c \equivss \lnot(c \prec b \lors b = c \lors \incomp(b, c))$
+Theorem, Quadrotomy (a): $b \prec c \equivss \lnot(c \prec b \lors b = c \lors \incomp(b, c))$
 
 \textit{Proof}:
 \begin{tabbing}
@@ -258,11 +258,11 @@ Theorem (a): $b \prec c \equivss \lnot(c \prec b \lors b = c \lors \incomp(b, c)
 	\> \>   $b \prec c$ \quad \myqed\\
 \end{tabbing}
 
-Theorem (b): $c \prec b \equivss \lnot(b \prec c \lors b = c \lors \incomp(b, c))$
+Theorem, Quadrotomy (b): $c \prec b \equivss \lnot(b \prec c \lors b = c \lors \incomp(b, c))$
 
 Because = and \textit{incomp} are symmetric, the proof of (b) is identical to that of (a) with $b,\;c := c,\;b$.\\
 
-Theorem (c): $b = c \equivss \lnot(b \prec c \lors c \prec b \lors \incomp(b, c))$
+Theorem, Quadrotomy (c): $b = c \equivss \lnot(b \prec c \lors c \prec b \lors \incomp(b, c))$
 
 \textit{Proof}:
 \begin{tabbing}
@@ -279,7 +279,7 @@ Theorem (c): $b = c \equivss \lnot(b \prec c \lors c \prec b \lors \incomp(b, c)
 	\> \>   $b = c$ \quad \myqed\\
 \end{tabbing}
 
-Theorem (d): $\incomp(b, c) \equivss \lnot(b \prec c \lors c \prec b \lors b = c)$
+Theorem, Quadrotomy (d): $\incomp(b, c) \equivss \lnot(b \prec c \lors c \prec b \lors b = c)$
 
 \textit{Proof}:
 \begin{tabbing}
@@ -295,138 +295,122 @@ Theorem (d): $\incomp(b, c) \equivss \lnot(b \prec c \lors c \prec b \lors b = c
 	\> \>   $\incomp(b, c)$ \quad \myqed\\
 \end{tabbing}
 
-Four abbreviations for expressions will be introduced here to make the following proofs more concise. Note that replacing \textit{A}, \textit{B}, \textit{C}, and \textit{D} with $b \prec c,\; c \prec b,\; b = c,$ and $\incomp(b,c)$, in any order, will make the expressions identical to Theorems (a)-(d). However, the expressions in general describe any situtation in which exactly one of \textit{A}, \textit{B}, \textit{C}, and \textit{D} is true.
+\subsection{Generalized Trichotomy}
 
-$\alpha$. $A \equivss \lnot (B \lors C \lors D)$
-
-$\beta$.  $B \equivss \lnot (A \lors C \lors D)$
-
-$\gamma$. $C \equivss \lnot (A \lors B \lors D)$
-
-$\delta$. $D \equivss \lnot (A \lors B \lors C)$\\
-
-Theorem (e): $\alpha \lands \beta \lands \gamma \lands \delta \;\;\impl\;\; A \lors B \lors C \lors D$
-
-\textit{Proof}: The proof is by (4.4) Deduction.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $A \lors B \lors C \lors D$\\
-	\> $=$  \>  \Hint{Assume conjunct $\alpha$ of the antecedent, $A \equivss \lnot (B \lors C \lors D)$}\\[\lgap]
-	\> \>   $ \lnot (B \lors C \lors D) \lors B \lors C \lors D$\\
-	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lors  \lnot p$}\\[\lgap]
-	\> \>   $true$ \quad \myqed\\
-\end{tabbing}
-
-Lemma 6: $\alpha \lands \beta \lands \gamma \lands \delta \;\;\impl\;\; \lnot (A \lands B \lands C)$
-
-\textit{Proof}: The proof is by (4.4) Deduction.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $\lnot (A \lands B \lands C)$\\
-	\> $=$  \>  \Hint{(3.47a) De Morgan, $\lnot (p \lands q) \equivs \lnot p \lors \lnot q$, twice}\\[\lgap]
-	\> \>   $\lnot A \lors \lnot B \lors \lnot C$\\
-	\> $=$  \>  \Hint{Assume conjunct $\alpha$, $A \equivss \lnot (B \lors C \lors D)$, with (3.12) Double negation}\\[\lgap]
-	\> \>   $B \lors C \lors D \lors \lnot B \lors \lnot C$\\
-	\> $=$  \>  \Hint{(3.28) Excluded middle, $p \lors \lnot p$, twice}\\[\lgap]
-	\> \>   $true \lors true \lors D$\\
-	\> $=$  \>  \Hint{(3.29) Identity of $\lor$, $p \lors true \equivs true$}\\[\lgap]
-	\> \>   $true$ \quad \myqed\\
-\end{tabbing}
-
-Lemma 7: $\alpha \lands \beta \lands \gamma \lands \delta \;\;\impl\;\; (A \lands \lnot B \lands \lnot C \equivs A)$
-
-\textit{Proof}: The proof is by (4.4) Deduction.
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $A \lands  \lnot B \lands \lnot C$\\
-	\> $=$  \>  \Hint{Assume conjunct $\alpha$ of the antecedent, $A \equivss \lnot (B \lors C \lors D)$}\\[\lgap]
-	\> \>   $\lnot (B \lors C \lors D) \lands \lnot B \lands \lnot C$\\
-	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lors q) \equivs \lnot p \lands \lnot q$, twice}\\[\lgap]
-	\> \>   $\lnot B \lands \lnot C \lands \lnot D \lands \lnot B \lands \lnot C$\\
-	\> $=$  \>  \Hint{(3.40) Idempotency of $\land$, $p \lands p \equivs p$}\\[\lgap]
-	\> \>   $\lnot B \lands \lnot C \lands \lnot D$\\
-	\> $=$  \>  \Hint{Assume conjunct $\alpha$ of the antecedent, $A \equivss \lnot (B \lors C \lors D)$}\\[\lgap]
-	\> \>   $A$ \quad \myqed\\
-\end{tabbing}
-
-Lemma 8: $(p \equiv q \equiv r) \equivss (p \land q \land r) \lors (p \land \lnot q \land \lnot r) \lors (\lnot p \land q \land \lnot r) \lors (\lnot p \land \lnot q \land r)$
-
-\textit{Proof}:
-\begin{tabbing}
-\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $p \equivs q \equivs r$\\
-	\> $=$  \>  \Hint{(3.52) Equivalence, $p \equivs q \equivss (p \lands q) \lors (\lnot p \lands \lnot q)$}\\[\lgap]
-	\> \>   $(p \land q) \lors (\lnot p \land \lnot q)\equivss r$\\
-	\> $=$  \>  \Hint{(3.52) Equivalence}\\[\lgap]
-	\> \>   $(((p \land q) \lors (\lnot p \land \lnot q)) \lands r) \lorss (\lnot ((p \land q) \lors (\lnot p \land \lnot q)) \lands \lnot r)$\\
-	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$, $p \lands (q \lor r) \equivss (p \land q) \lors (p \land r)$}\\[\lgap]
-	\> \>   $(p \land q \land r) \lorss (\lnot p \land \lnot q \land r) \lorss (\lnot ((p \land q) \lors (\lnot p \land \lnot q)) \lands \lnot r)$\\
-	\> $=$  \>  \Hint{(3.52) Equivalence}\\[\lgap]
-	\> \>  $(p \lands q \land r) \lors (\lnot p \land \lnot q \land r) \lors (\lnot (p \equivs q) \lands \lnot r)$\\
-	\> $=$  \>  \Hint{(3.10) Definition of $\nequiv$, $(p \nequiv q) \equivss \lnot (p \equivs q)$}\\[\lgap]
-	\> \>   $(p \land q \land r) \lors (\lnot p \land \lnot q \land r) \lors ((p \nequiv q) \lands \lnot r)$\\
-	\> $=$  \>  \Hint{(3.46) Excusive or, $p \nequiv q \equivs (\lnot p \lands q) \lors (p \lands \lnot q)$}\\[\lgap]
-	\> \>   $(p \land q \land r) \lors (\lnot p \land \lnot q \land r) \lors (((\lnot p \land q) \lors (p \land \lnot q)) \lands \lnot r)$\\
-	\> $=$  \>  \Hint{(3.46) Distributivity of $\land$ over $\lor$}\\[\lgap]
-	\> \>   $(p \land q \land r) \lors (\lnot p \land \lnot q \land r) \lors (p \land \lnot q \land \lnot r) \lors (\lnot p \land q \land \lnot r)$\\
-	\> $=$  \>  \Hint{(3.24) Symmetry of $\lors$}\\[\lgap]
-	\> \>   $(p \land q \land r) \lors (p \land \lnot q \land \lnot r) \lors (\lnot p \land q \land \lnot r) \lors (\lnot p \land \lnot q \land r) $ \quad \myqed\\
-\end{tabbing}
-
-Lemma 9: $\incomp(b,c) \equivs false$, where $\incomp(b,c)$ refers to b and c being incomparable under $\le$.
+Corollary to (14.50): $\incomp(b,c) \equivs false$, where $\incomp(b,c)$ refers to b and c being incomparable under a total order $\le$.
 
 \textit{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 	\> \>  $\incomp(b,c)$\\
-	\> $=$  \>  \Hintfirst{(14.47.1) Definition, Incomparable, $\incomp(b,c)  \equivss  \lnot (b \preceq c) \lands  \lnot (c \preceq b)$, where}\\
-	\>			\>  \Hintlast{the partial order is $\le$}\\[\lgap]
+	\> $=$  \>  \Hintfirst{(14.47.1) Definition, Incomparable, $\incomp(b,c)  \equivss  \lnot (b \preceq c) \lands  \lnot (c \preceq b)$,}\\
+	\>			\>  \Hintlast{with $\preceq := \le$}\\[\lgap]
 	\> \>   $\lnot (b \le c) \lands \lnot (c \le b)$\\
 	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lors q) \equivs \lnot p \lands \lnot q$}\\[\lgap]
 	\> \>   $\lnot (b \le c \lors c \le b)$\\
-	\> $=$  \>  \Hintfirst{(14.50) Definition, Total Order: A partial order $\preceq$ over \textit{B} is called a total or linear}\\
-	\>			\>  \Hintlast{order if $(\all b,c \drrb b \preceq c \lors c \preceq b)$, with the fact that $ \le $ is a total order}\\[\lgap]
+	\> $=$  \>  \Hintfirst{(14.50) Definition, Total Order: A partial order $\preceq$ over \textit{B} is called a total or}\\
+	\>			\>  \Hintlast{linear order if $(\all b,c \drrb b \preceq c \lors c \preceq b)$}\\[\lgap]
 	\> \>   $\lnot true$\\
 	\> $=$  \>  \Hint{(3.8) Definition of false}\\[\lgap]
 	\> \>   $false$\quad \myqed\\
 \end{tabbing}
 
-(15.44) Trichotomy: $(a<b \equivs a=b \equivs a>b) \landss \lnot (a<b \lands a=b \lands a>b)$
+Theorem, Trichotomy (a): $b < c \equivss \lnot(c < b \lors b = c)$, where < is a strict total order.
 
 \textit{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $(a<b \equivs a=b \equivs a>b) \landss \lnot (a<b \lands a=b \lands a>b)$\\
-	\> $=$  \>  \Hintfirst{Lemma 6, $\alpha \lands \beta \lands \gamma \lands \delta \;\;\impl\;\; \lnot (A \lands B \lands C)$ with $A,\;B,\;C,\;D:=a<b,\;a=b$,}\\
-	\>			 \>  \Hintlast{$\;a>b,\;\incomp(a,b)$. The antecedent is true by Theorems (a)-(d)}\\[\lgap]
-	\> \>  $(a<b \equivs a=b \equivs a>b) \lands true$\\
-	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \lands true \equivs p$}\\[\lgap]
-	\> \>  $(a<b \equivs a=b \equivs a>b)$\\
-	\> $=$  \>  \Hint{Lemma 8, with $p,\;q,\;r:=a<b,\;a=b,\;a>b$}\\[\lgap]
-	\> \>  $(a<b \lands a=b \lands a>b) \lorss (a<b \lands \lnot (a=b) \lands \lnot (a>b)) \lorss$\\
-	\>	 \> $(\lnot (a<b) \lands a=b \lands \lnot (a>b)) \lorss (\lnot (a<b) \lands \lnot (a=b) \lands a>b)$\\
-	\> $=$  \>  \Hint{Lemma 6 as in step 1, but with (3.12) Double negation}\\[\lgap]
-	\> \>  $false \lorss (a<b \lands \lnot (a=b) \lands \lnot (a>b)) \lorss (\lnot (a<b) \lands a=b \lands \lnot (a>b)) \lorss$\\
-	\> \> $(\lnot (a<b) \lands \lnot (a=b) \lands a>b)$\\
+	\> \>  $b < c$\\
+	\> $=$  \>  \Hintfirst{(Theorem, Quadrotomy (a), $b \prec c \equivss \lnot(c \prec b \lors b = c \lors \incomp(b, c))$, with}\\
+	\>			 \>  \Hintlast{$\prec := <$}\\[\lgap]
+	\> \>   $\lnot(c < b \lors b = c \lors \incomp(b, c))$\\
+	\> $=$  \>  \Hint{Corollary to (14.50), $\incomp(b,c) \equivs false$ for a total order}\\[\lgap]
+	\> \>   $\lnot(c < b \lors b = c \lors false)$\\
+	\> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p \lors false \equivs false$}\\[\lgap]
+	\> \>   $\lnot(c < b \lors b = c)$\quad \myqed\\
+\end{tabbing}
+
+Theorem, Trichotomy (b): $c < b \equivss \lnot(b < c \lors b = c)$, where < is a strict total order.
+
+\textit{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $c < b$\\
+	\> $=$  \>  \Hintfirst{(Theorem, Quadrotomy (b), $c \prec b \equivss \lnot(b \prec c \lors b = c \lors \incomp(b, c))$, with}\\
+	\>			 \>  \Hintlast{$\prec := <$}\\[\lgap]
+	\> \>   $\lnot(b < c \lors b = c \lors \incomp(b, c))$\\
+	\> $=$  \>  \Hint{Corollary to (14.50), $\incomp(b,c) \equivs false$ for a total order}\\[\lgap]
+	\> \>   $\lnot(b < c \lors b = c \lors false)$\\
+	\> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p \lors false \equivs false$}\\[\lgap]
+	\> \>   $\lnot(b < c \lors b = c)$\quad \myqed\\
+\end{tabbing}
+
+Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, where < is a strict total order.
+
+\textit{Proof}:
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $b = c$\\
+	\> $=$  \>  \Hintfirst{(Theorem, Quadrotomy (c), $b = c \equivss \lnot(b \prec c \lors c \prec b \lors \incomp(b, c))$, with}\\
+	\>			 \>  \Hintlast{$\prec := <$}\\[\lgap]
+	\> \>   $\lnot(b < c \lors c < b \lors \incomp(b, c))$\\
+	\> $=$  \>  \Hint{Corollary to (14.50), $\incomp(b,c) \equivs false$ for a total order}\\[\lgap]
+	\> \>   $\lnot(b < c \lors c < b \lors false)$\\
+	\> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p \lors false \equivs false$}\\[\lgap]
+	\> \>   $\lnot(b < c \lors c < b)$\quad \myqed\\
+\end{tabbing}
+
+\subsection{Gries and Schneider's Trichotomy}
+
+Lemma, MECE-3 (Mutually Exclusive and Collectively Exhaustive for 3 Elements): $(p \equiv q \equiv r) \lands \lnot(p \land q \land r) \equivss (p \equivs \lnot(q \lor r)) \lands (q \equivs \lnot(p \lor r)) \lands (r \equivs \lnot(p \lor q))$
+
+\textit{Proof}: The proof is by (4.5) Case Analysis on \textit{p}, \textit{q}, and \textit{r}. There are eight cases: \textit{p}, \textit{q}, and \textit{r} can be either true or false.
+
+Case 1: \textit{p}, \textit{q}, and \textit{r} are all false.
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $(p \equiv q \equiv r) \lands \lnot(p \land q \land r) \equivss (p \equivs \lnot(q \lor r)) \lands (q \equivs \lnot(p \lor r)) \lands (r \equivs \lnot(p \lor q))$\\
+	\> $=$  \>  \Hint{Case 1}\\[\lgap]
+	\> \>   $(false \equiv false \equiv false) \lands \lnot(false \land false \land false) \equivss (false \equivs \lnot(false \lor false))$\\
+	\> \>   $\lands (false \equivs \lnot(false \lor false)) \lands (false \equivs \lnot(false \lor false))$\\
+	\> $=$  \>  \Hint{(3.15), $\lnot p \equivs p \equivs false$}\\[\lgap]
+	\> \>   $\lnot(false \equiv false) \lands \lnot(false \land false \land false) \equivss \lnot \lnot(false \lor false)$\\
+	\> \>   $\lands \lnot \lnot(false \lor false) \lands \lnot \lnot(false \lor false)$\\
+	\> $=$  \>  \Hint{(3.12) Double negation, $\lnot \lnot p \equivs p$}\\[\lgap]
+	\> \>   $\lnot(false \equiv false) \lands \lnot(false \land false \land false) \equivss (false \lor false) \lands (false \lor false)$\\
+	\> \>   $\lands (false \lor false)$\\
 	\> $=$  \>  \Hint{(3.30) Identity of $\lor$, $p \lors false \equivs p$}\\[\lgap]
-	\> \>  $(a<b \lands \lnot (a=b) \lands \lnot (a>b)) \lorss (\lnot (a<b) \lands a=b \lands \lnot (a>b)) \lorss$\\
-	\> \>  $(\lnot (a<b) \lands \lnot (a=b) \lands a>b)$\\
-	\> $=$  \>  \Hintfirst{Lemma 7, $\alpha \lands \beta \lands \gamma \lands \delta \;\;\impl\;\;(A \lands \lnot B \lands \lnot C \equivs A)$, with}\\
-	\>			 \>  \Hintmid{$A,\;B,\;C,\;D:=a<b,\;a=b,\;a>b,\;\incomp(a,b)$. The conjuncts of the antecedent}\\
-	\>			 \>  \Hintlast{are satisfied by Theorems (a)-(d)}\\[\lgap]
-	\> \>  $a<b \lorss (\lnot (a<b) \lands a=b \lands \lnot (a>b)) \lorss (\lnot (a<b) \lands \lnot (a=b) \lands a>b)$\\
-	\> $=$  \>  \Hintfirst{Lemma 7, with $A,\;B,\;C,\;D:=a=b,\;a<b,\;a>b,\;\incomp(a,b)$. The conjuncts of}\\
-	\>			 \>  \Hintmid{the antecedent are satisfied as in the previous step. Note that the expressions}\\
-	\>			 \>  \Hintlast{replacing A and B are swapped compared to the previous step}\\[\lgap]
-	\> \>  $a<b \lorss a=b \lorss (\lnot (a<b) \lands \lnot (a=b) \lands a>b)$\\
-	\> $=$  \>  \Hintfirst{Lemma 7, with $A,\;B,\;C,\;D:=a<b,\;a=b,\;a>b,\;\incomp(a,b)$. The conjuncts of}\\
-	\>			 \>  \Hintmid{the antecedent are satisfied as in the previous step. Note that the expressions are}\\
-	\>			 \>  \Hintlast{again swapped to make the lemma apply to the final disjunct}\\[\lgap]
-	\> \>  $a<b \lors a=b \lors a>b$\\
-	\> $=$  \>  \Hint{Theorem (d) with $\preceq := \le$, with (3.12) Double negation}\\[\lgap]
-	\> \>  $\lnot \incomp(a,b)$\\
-	\> $=$  \>  \Hint{Lemma 9}\\[\lgap]
-	\> \>  $true$ \quad \myqed\\
+	\> \>   $\lnot(false \equiv false) \lands \lnot(false \land false \land false) \equivss false \lands false \lands false$\\
+	\> $=$  \>  \Hint{(3.40) Identity of $\land$, $p \land false \equivs false$}\\[\lgap]
+	\> \>   $\lnot(false \equiv false) \lands \lnot false \equivss false$\\
+	\> $=$  \>  \Hint{(3.3) Identity of $\equiv$, $true \equivs q \lors q$}\\[\lgap]
+	\> \>   $\lnot true \lands \lnot false\equivss false$\\
+	\> $=$  \>  \Hint{(3.8) Definition of false, $\lnot true \equivs false$}\\[\lgap]
+	\> \>   $false \lands true \equivss false$\\
+	\> $=$  \>  \Hint{(3.40) Zero of $\land$, $p \land false \equivs false$}\\[\lgap]
+	\> \>   $true$\quad \myqed\\
+\end{tabbing}
+
+Cases 2-8?
+
+(15.44) Trichotomy: $(a < b \lors a = b \lors a > b) \lands \lnot(a < b \lors a = b \lors a > b)$
+
+\textit{Proof}
+\begin{tabbing}
+\hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
+	\> \>  $(a < b \lors a = b \lors a > b) \lands \lnot(a < b \lors a = b \lors a > b)$\\
+	\> $=$  \>  \Hint{Lemma, MECE-3}\\[\lgap]
+	\> \>   $(a < b \equivs \lnot(b < a \lors b = c)) \lands (b < a \equivs \lnot(a < b \lors b = c))$\\
+	\> \>   $\lands (a = b \equivs \lnot(a < b \lors b < a))$\\
+	\> $=$  \>  \Hintfirst{Theorem, Trichotomy (a), $b < c \equivss \lnot(c < b \lors b = c)$, with $<$ (generic strict}\\
+	\>			 \>  \Hintlast{total order) replaced by $<$ (integers)}\\[\lgap]
+	\> \>   $true \lands (b < a \equivs \lnot(a < b \lors b = c)) \lands (a = b \equivs \lnot(a < b \lors b < a))$\\
+	\> $=$  \>  \Hint{Theorem, Trichotomy (b): $c < b \equivss \lnot(b < c \lors b = c)$, with $<:=<$}\\[\lgap]
+	\> \>   $true \lands true \lands (a = b \equivs \lnot(a < b \lors b < a))$\\
+	\> $=$  \>  \Hint{Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, with $<:=<$}\\[\lgap]
+	\> \>   $true \lands true \lands true$\\
+	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equivs p$, twice}\\[\lgap]
+	\> \>   $true$\quad \myqed\\
 \end{tabbing}
 
 \section{Conclusion}
