@@ -41,9 +41,9 @@
 \newcommand{\equivss}{\ensuremath{\;\;\equiv\;\;}}  % Equivales with double space
 \newcommand{\lors}{\ensuremath{\;\lor\;}}           % Disjunction with space
 \newcommand{\lorss}{\ensuremath{\;\;\lor\;\;}}      % Disjunction with double space
-\newcommand{\lands}{\ensuremath{\;\land\;}}      % Conjunction with space
-\newcommand{\landss}{\ensuremath{\;\;\land\;\;}}      % Conjunction with double space
-\newcommand{\nequiv}{\ensuremath{\not\equivs}}       % Inequivalent
+\newcommand{\lands}{\ensuremath{\;\land\;}}         % Conjunction with space
+\newcommand{\landss}{\ensuremath{\;\;\land\;\;}}    % Conjunction with double space
+\newcommand{\nequiv}{\ensuremath{\not\equiv}}       % Inequivalent
 \newcommand{\impl}{\ensuremath{\Rightarrow}}        % Implies
 \newcommand{\nimpl}{\ensuremath{\not\Rightarrow}}   % Does not imply
 \newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from
@@ -157,6 +157,8 @@ Reference to LADM trichotomy.
 \section{Results}
 
 \subsection{Quadrotomy}
+
+Overall plan.
 
 Lemma 1: $b \prec c \lors b = c \equivss b \preceq c$, where $\prec$ is the reflexive reduction of $\preceq$.
 
@@ -274,8 +276,7 @@ Theorem, Quadrotomy (a): $b \prec c \equivss \lnot(c \prec b \lors b = c \lors \
 
 Theorem, Quadrotomy (b): $c \prec b \equivss \lnot(b \prec c \lors b = c \lors \incomp(b, c))$
 
-Because = and \textit{incomp} are symmetric, part (b) is simply (a) with $b,\;c := c,\;b$.
-Thus, it is technically not necessary as a theorem, but is given for symmetry and ease of comprehension.\\
+Because = and \textit{incomp} are symmetric, Quadrotomy (b) is simply Quadrotomy (a) with $b,\;c := c,\;b$.\\
 
 Theorem, Quadrotomy (c): $b = c \equivss \lnot(b \prec c \lors c \prec b \lors \incomp(b, c))$
 
@@ -312,6 +313,8 @@ Theorem, Quadrotomy (d): $\incomp(b, c) \equivss \lnot(b \prec c \lors c \prec b
 
 \subsection{Generalized Trichotomy}
 
+Overall plan.
+
 Corollary to (14.50): $\incomp(b,c) \equivs false$, where $\incomp(b,c)$ refers to b and c being incomparable under a total order $\le$.
 
 \textit{Proof}:
@@ -347,7 +350,7 @@ Theorem, Trichotomy (a): $b < c \equivss \lnot(c < b \lors b = c)$, where < is a
 
 Theorem, Trichotomy (b): $c < b \equivss \lnot(b < c \lors b = c)$, where < is a strict total order.
 
-Like Quadrotomy (b), Trichotomy (b) is simply (a) with $b,c:=c,b$.
+Trichotomy (b) is simply Trichotomy (a) with $b,c:=c,b$.\\[\lgap]
 
 Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, where < is a strict total order.
 
@@ -368,25 +371,28 @@ Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, where < is a
 
 It is not easy to concisely describe a stituation in which several propositions are both mutually exclusive (that is, at most one can be true) and collectively exhaustive (that is, at least one must be true) using only binary boolean operators.
 There are several different ways to do so, and differences in the ways chosen account for most of the difficulty in showing that Gries and Schneider's Trichotomy is a special case of our Quadrotomy.
-Figure \ref{fig:meceFig} below shows three different examples of ways to do so.
+
+Figure \ref{fig:meceFig} below shows three different ways to do so.
 The first we name "Double Implication," since it can be intuitively read as a series of two-way implications, "if and only if" statements.
 This is the format we use for the Quadrotomy and the Generalized Trichotomy.
+
 The second we name "Equivalence String," since the core element is a string of equivalences, followed by a string of excluded specific cases.
 This is the format Gries and Schneider use for their Trichotomy.
+
 The third we name "Truth Table" because of its strong resemblance to a truth table; each disjunct says that one particular row of the truth table is true.
 This is used in none of the theorems, but is an important step in the proof that they are equivalent.
 
 \begin{table}
- \begin{tabular}{ |c|c|c|c| }
-  \hline
+ \begin{tabular}{ c|c|c|c }
+  \toprule
   Format & 2 Propositions & 3 Propositions & 4 Propositions\\
-  \hline
+  \midrule
   Double Implication & \begin{tabular}{c} $(p \equiv \lnot q) \lands$ \\ $(q \equiv \lnot p)$\end{tabular} & \begin{tabular}{c} $(p \equiv \lnot(q \lor r)) \lands$ \\ $(q \equiv \lnot(p \lor r)) \lands$ \\ $(r \equiv \lnot(p \lor q))$\end{tabular} & \begin{tabular}{c} $(p \equiv \lnot(q \lor r \lor s)) \lands$ \\ $(q \equiv \lnot(p \lor r \lor s)) \lands$ \\ $(r \equiv \lnot(p \lor q \lor s)) \lands$ \\ $s \equiv \lnot(p \lor q \lor r)$\end{tabular} \\
-  \hline
+  \midrule
   Equivalence String & $p \nequiv q$ & \begin{tabular}{c} $(p \equiv q \equiv r) \lands$ \\ $\lnot(p \land q \land r)$\end{tabular} & \begin{tabular}{c} $(p \nequiv q \nequiv r \nequiv s) \lands$ \\ $\lnot(\lnot p \land q \land r \land s) \lands$ \\ $\lnot(p \land \lnot q \land r \land s) \lands$ \\ $\lnot(p \land q \land \lnot r \land s) \lands$ \\ $\lnot(p \land q \land r \land \lnot s)$\end{tabular}\\
-  \hline
+  \midrule
   Truth table & \begin{tabular}{c}$ (p \land \lnot q) \lors$ \\ $(\lnot p \land q)$\end{tabular} & \begin{tabular}{c} $(p \land \lnot q \land \lnot r) \lors$ \\ $(\lnot p \land q \land \lnot r) \lors$ \\ $(\lnot p \land \lnot q \land r)$\end{tabular} & \begin{tabular}{c} $(p \land \lnot q \land \lnot r \land \lnot s) \lors$ \\ $(\lnot p \land q \land \lnot r \land \lnot s) \lors$ \\ $(\lnot p \land \lnot q \land r \land \lnot s) \lors$ \\ $(\lnot p \land \lnot q \land \lnot r \land  s)$\end{tabular}\\
-  \hline
+  \bottomrule
  \end{tabular}
  \caption{Different ways to express mutually exclusive, collectively exhaustive propositions\label{fig:meceFig}}
 \end{table}
@@ -404,7 +410,7 @@ Lemma 6 is stated without proof, since as mentioned the proof is tedious.\\
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 	\> \>  $(a < b \lors a = b \lors a > b) \lands \lnot(a < b \lors a = b \lors a > b)$\\
-	\> $=$  \>  \Hint{Lemma, MECE-3}\\[\lgap]
+	\> $=$  \>  \Hint{Lemma 6}\\[\lgap]
 	\> \>   $(a < b \equivs \lnot(b < a \lors a = b)) \lands (b < a \equivs \lnot(a < b \lors a = b))$\\
 	\> \>   $\lands (a = b \equivs \lnot(a < b \lors b < a))$\\
 	\> $=$  \>  \Hintfirst{Theorem, Trichotomy (a), $b < c \equivss \lnot(c < b \lors b = c)$, with $<$ (generic strict}\\
@@ -419,6 +425,8 @@ Lemma 6 is stated without proof, since as mentioned the proof is tedious.\\
 \end{tabbing}
 
 \section{Conclusion}
+
+Something
 
 \bibliographystyle{plain}
 \bibliography{myBiblio.bib}
