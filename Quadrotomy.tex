@@ -156,6 +156,8 @@ Reference to LADM trichotomy.
 
 \section{Results}
 
+Preview this section.
+
 \subsection{Quadrotomy} \label {Quadrotomy}
 
 To prove that two elements $a$ and $b$ are related by exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$, we prove the four-part theorem:
@@ -166,9 +168,13 @@ Theorem, Quadrotomy (b): $c \prec b \equivss \lnot(b \prec c \lors b = c \lors \
 
 Theorem, Quadrotomy (c): $b = c \equivss \lnot(b \prec c \lors c \prec b \lors \incomp(b, c))$
 
-Theorem, Quadrotomy (d): $\incomp(b, c) \equivss \lnot(b \prec c \lors c \prec b \lors b = c)$
-
-The reasoning behind the choice of these theorems is discussed further in Subsection \ref{Gries}.
+Theorem, Quadrotomy (d): $\incomp(b, c) \equivss \lnot(b \prec c \lors c \prec b \lors b = c)$\\
+By mutual implication $p\equiv q$ is equivalent to $p\impl q$ and $q\impl p$.
+The left-to-right implication for Quadrotomy (a) asserts that if $b\prec c$ holds, then none of the other three parts of the quadrotomy holds, and similarly for theorems (b), (c), and (d).
+Consequently, at most one of the four parts of the quadrotomy is true.
+The right-to-left implication for Quadrotomy (a) asserts that if none of the other three parts of the quadrotomy holds, then $b\prec c$ holds, and similarly for theorems (b), (c), and (d).
+Consequently, at least one of the four parts of the quadrotomy is true.
+Therefore, exactly one of the four parts of the quadrotomy is true.
 
 To prove this four-part theorem, we first prove several lemmas.
 The first lemma, $b \prec c \lors b = c \equivss b \preceq c$, where $\prec$ is the reflexive reduction of $\preceq$, states that comparing two elements under a partial order is equivalent to comparing them under a strict order or equality.
