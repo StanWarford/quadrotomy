@@ -18,12 +18,12 @@
 \usepackage{verbatim}
 
 % For Dr. Warford's computer
-%\begin{comment}
+\begin{comment}
 \setmainfont{Times}[ItalicFont    ={* Italic},
                     BoldFont      ={* Bold},
                     BoldItalicFont={* Bold Italic}]
 \setsansfont{Helvetica}
-%\end{comment}
+\end{comment}
 
 % For Alex's computer
 \begin{comment}
@@ -158,12 +158,12 @@ Reference to LADM trichotomy.
 
 Section 2.1 formally proves a general quadrotomy for partial orders.
 Section 2.2 applies the general quadrotomy to prove the special case of a trichotomy for all total orders.
-In the solutions manual for LADM, Gries and Schneider prove using the properties of integers a trychotomy for $\le$, which is an example of a total order.
+In the solutions manual for LADM, Gries and Schneider prove using the properties of integers a trichotomy for $\le$, which is an example of a total order.
 Section 2.3 applies our trichotomy for all total orders to prove Gries and Schneider's trichotomy for the total order $\le$ without using the properties of integers.
 
 \subsection{Quadrotomy} \label {Quadrotomy}
 
-To prove that two elements $a$ and $b$ are related by exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$, we prove the four-part theorem:
+To prove that two elements $a$ and $b$ are related by exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$, we prove the following four-part theorem:
 
 Theorem, Quadrotomy (a): $b \prec c \equivss \lnot(c \prec b \lors b = c \lors \incomp(b, c))$
 
@@ -212,7 +212,7 @@ The fifth lemma,
 \[
 \rho$ is antisymmetric $\lands$ $\rho$ is reflexive $\impl (b \rho c \lands c \rho b \equivs b = c)
 \]
-is an important property of partial orders: if $b \preceq c$ and $c \preceq b$, then $b = c$, because no element can both precede and follow any other element.
+is an important property of partial orders, which can again be proven by mutual implication: no element can both precede and follow any other element, unless the two are identical.
 Like the third and fourth lemmas, when the conjuncts of the antecedent of this theorem are true, the consequent can be used as a theorem.\\
 
 Lemma 1: $b \prec c \lors b = c \equivss b \preceq c$, where $\prec$ is the reflexive reduction of $\preceq$.
@@ -302,7 +302,7 @@ The proof of $b = c \impl b \rho c \lands c \rho b$ is by (4.4) Deduction.
 	\> \>   $true$ \quad \myqed\\
 \end{tabbing}
 
-\subsubsection{quadrotomy theorems}
+\subsubsection{Quadrotomy Theorems}
 
 Proof of the four quadrotomy theorems using the five lemmas follows.\\
 
@@ -380,7 +380,7 @@ Theorem, Trichotomy (b): $c < b \equivss \lnot(b < c \lors b = c)$, where < is a
 
 Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, where < is a strict total order.
 
-It will be noticed that these theorems closely mirror the four theorems of Quadrotomy, but with the disjunct $\incomp(b,c)$ removed.
+It should be noticed that these theorems closely mirror the four theorems of Quadrotomy, but with the disjunct $\incomp(b,c)$ removed.
 The reason for this is Lemma 6, $\incomp(b,c) \equivs false$, where $\incomp(b,c)$ refers to b and c being incomparable under a total order $\le$.
 Lemma 6 follows closely from the definition of a total order, and the proofs of the three parts of Trichotomy follow closely from Lemma 6 and Quadrotomy.\\
 
