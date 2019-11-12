@@ -18,12 +18,12 @@
 \usepackage{verbatim}
 
 % For Dr. Warford's computer
-\begin{comment}
+%\begin{comment}
 \setmainfont{Times}[ItalicFont    ={* Italic},
                     BoldFont      ={* Bold},
                     BoldItalicFont={* Bold Italic}]
 \setsansfont{Helvetica}
-\end{comment}
+%\end{comment}
 
 % For Alex's computer
 \begin{comment}
@@ -153,13 +153,14 @@ The treatment is in marked contrast to the traditional one exemplified by the cl
 
 Paragraph or section on this application of $\mathcal{E}$ to the problem.
 Reference to LADM trichotomy.
+Define terms, include discussion of strict vs. general total orders.
 
 \section{Results}
 
 Section 2.1 formally proves a general quadrotomy for partial orders.
 Section 2.2 applies the general quadrotomy to prove the special case of a trichotomy for all total orders.
 In the solutions manual for LADM, Gries and Schneider prove using the properties of integers a trichotomy for $\le$, which is an example of a total order.
-Section 2.3 applies our trichotomy for all total orders to prove Gries and Schneider's trichotomy for the total order $\le$ without using the properties of integers.
+Section 2.3 shows that Gries and Schneider's trichotomy for integers is a special case of our more general trichotomy for all total orders.
 
 \subsection{Quadrotomy} \label {Quadrotomy}
 
@@ -380,7 +381,7 @@ Theorem, Trichotomy (b): $c < b \equivss \lnot(b < c \lors b = c)$, where < is a
 
 Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, where < is a strict total order.
 
-It should be noticed that these theorems closely mirror the four theorems of Quadrotomy, but with the disjunct $\incomp(b,c)$ removed.
+These theorems closely mirror the four theorems of Quadrotomy, but with the disjunct $\incomp(b,c)$ removed.
 The reason for this is Lemma 6, $\incomp(b,c) \equivs false$, where $\incomp(b,c)$ refers to b and c being incomparable under a total order $\le$.
 Lemma 6 follows closely from the definition of a total order, and the proofs of the three parts of Trichotomy follow closely from Lemma 6 and Quadrotomy.\\
 
@@ -391,7 +392,7 @@ Lemma 6: $\incomp(b,c) \equivs false$, where $\incomp(b,c)$ refers to b and c be
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 	\> \>  $\incomp(b,c)$\\
 	\> $=$  \>  \Hintfirst{(14.47.1) Definition, Incomparable, $\incomp(b,c)  \equivss  \lnot (b \preceq c) \lands  \lnot (c \preceq b)$,}\\
-	\>			\>  \Hintlast{with $\preceq := \le$}\\[\lgap]
+	\>			\>  \Hintlast{with $\preceq\; :=\; \le$}\\[\lgap]
 	\> \>   $\lnot (b \le c) \lands \lnot (c \le b)$\\
 	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lors q) \equivs \lnot p \lands \lnot q$}\\[\lgap]
 	\> \>   $\lnot (b \le c \lors c \le b)$\\
@@ -409,7 +410,7 @@ Theorem, Trichotomy (a): $b < c \equivss \lnot(c < b \lors b = c)$, where < is a
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 	\> \>  $b < c$\\
 	\> $=$  \>  \Hintfirst{(Theorem, Quadrotomy (a), $b \prec c \equivss \lnot(c \prec b \lors b = c \lors \incomp(b, c))$, with}\\
-	\>			 \>  \Hintlast{$\prec := <$}\\[\lgap]
+	\>			 \>  \Hintlast{$\prec\; :=\; <$}\\[\lgap]
 	\> \>   $\lnot(c < b \lors b = c \lors \incomp(b, c))$\\
 	\> $=$  \>  \Hint{Lemma 6, $\incomp(b,c) \equivs false$ for a total order}\\[\lgap]
 	\> \>   $\lnot(c < b \lors b = c \lors false)$\\
@@ -438,25 +439,22 @@ Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, where < is a
 
 \subsection{Gries and Schneider's Trichotomy} \label{Gries}
 
-It is not easy to concisely describe a stituation in which several propositions are both mutually exclusive (that is, at most one can be true) and collectively exhaustive (that is, at least one must be true) using only binary boolean operators.
-There are several different ways to do so, and differences in the ways chosen account for most of the difficulty in showing that Gries and Schneider's Trichotomy is a special case of our Quadrotomy.
+There are several different ways to describe a stituation in which several propositions are both mutually exclusive (that is, at most one can be true) and collectively exhaustive (that is, at least one must be true).
 
-Figure \ref{fig:meceFig} below shows three different ways to do so.
-The first we name "Double Implication," since it can be intuitively read as a series of two-way implications, "if and only if" statements.
-This is the format we use for the Quadrotomy and the Generalized Trichotomy.
-We do so because with larger numbers of propositions, it has fewer conjuncts than Equivalence String.
-In addition, it has conjuncts rather than disjuncts as Truth Table does, and therefore can be broken up into several theorems rather than one long, unwieldy theorem.
+Table \ref{fig:meceFig} below shows three different formulations.
+The first we name ``Double Implication'' because it can be intuitively read as a series of two-way implications, "if and only if" statements.
+The second we name ``Equivalence String'' because the core element is a string of equivalences, followed by a string of excluded specific cases.
+The third we name ``Truth Table'' because of its strong resemblance to a truth table; each disjunct says that one particular row of the truth table is true.
 
-The second we name "Equivalence String," since the core element is a string of equivalences, followed by a string of excluded specific cases.
-This is the format Gries and Schneider use for their Trichotomy.
-
-The third we name "Truth Table" because of its strong resemblance to a truth table; each disjunct says that one particular row of the truth table is true.
-This is used in none of the theorems, but is an important step in the proof that they are equivalent.
+The first format we use for the Quadrotomy and the Generalized Trichotomy, because with larger numbers of propositions, it has fewer conjuncts than Equivalence String.
+Furthermore, it has conjuncts rather than disjuncts as Truth Table does, and therefore can be broken up into several theorems rather than one long, unwieldy theorem.
+The second is the format Gries and Schneider use for their Trichotomy.
+The third is used in none of the theorems, but is a step in the proof that they are equivalent.
 
 \begin{table}
  \begin{tabular}{ c|c|c|c }
   \toprule
-  Format & 2 Propositions & 3 Propositions & 4 Propositions\\
+  Format & Two Propositions & Three Propositions & Four Propositions\\
   \midrule
   Double Implication & \begin{tabular}{c} $(p \equiv \lnot q) \lands$ \\ $(q \equiv \lnot p)$\end{tabular} & \begin{tabular}{c} $(p \equiv \lnot(q \lor r)) \lands$ \\ $(q \equiv \lnot(p \lor r)) \lands$ \\ $(r \equiv \lnot(p \lor q))$\end{tabular} & \begin{tabular}{c} $(p \equiv \lnot(q \lor r \lor s)) \lands$ \\ $(q \equiv \lnot(p \lor r \lor s)) \lands$ \\ $(r \equiv \lnot(p \lor q \lor s)) \lands$ \\ $s \equiv \lnot(p \lor q \lor r)$\end{tabular} \\
   \midrule
@@ -468,12 +466,11 @@ This is used in none of the theorems, but is an important step in the proof that
  \caption{Different ways to express mutually exclusive, collectively exhaustive propositions\label{fig:meceFig}}
 \end{table}
 
-It is important to recognize that while the expressions as given may look significantly different, all of the rows are equivalent because they describe the same truth table, which we have checked with an automated truth-table generator.
-This can also be proven with the calculational system, but the proof is tedious, and will not be presented here.
-Lemma 7 follows from this table—in particular, from the equivalence of the second and third elements of the third column.
+While the expressions as given may look different, all the rows are equivalent because they describe the same truth table, which we have checked with an automated truth-table generator.
+One could prove that the rows are equivalent with the calculational system, but the proof is tedious, and is not presented here.
+Lemma 7 follows from Table 1 --- in particular, from the equivalence of Double Implication / Three Propositions and Equivalence String / Three Propositions.\\
 
 Lemma 7:\\ $(p \equiv q \equiv r) \lands \lnot(p \land q \land r) \equivss (p \equivs \lnot(q \lor r)) \lands (q \equivs \lnot(p \lor r)) \lands (r \equivs \lnot(p \lor q))$\\
-Lemma 7 is stated without proof, since as mentioned the proof is tedious.\\
 
 (15.44) Trichotomy: $(a < b \lors a = b \lors a > b) \lands \lnot(a < b \lors a = b \lors a > b)$
 
