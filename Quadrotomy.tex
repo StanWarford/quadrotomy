@@ -16,6 +16,7 @@
 \usepackage{ellipsis}
 \usepackage{array}
 \usepackage{verbatim}
+\usepackage{lipsum}                                % For footnote
 
 % For Dr. Warford's computer
 \begin{comment}
@@ -33,6 +34,12 @@
 \setsansfont{Arial}
 %\end{comment}
 
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
 \newcommand{\lllgap}{12pt}                          % Gap between tables
@@ -133,7 +140,7 @@ the binary operators conjunction $\land$, disjunction $\lor$, implies $\impl$ (a
 and equivalence $\equiv$ (also written $\leftrightarrow$),
 variables (lowercase letters $p$, $q$, \dots), and the constants \textit{true} and \textit{false}.
 Hilbert-style logic systems, $\mathcal{H}$, are the deductive logic systems traditionally used in mathematics to describe the propositional calculus.
-A key feature of such systems is their multiplicity of inference rules and the importance of modus ponens as one of them.
+A key feature of such systems is their multiplicity of inference rules and the importance of modus ponens as one of them.\blfootnote{Presented at the Southern California Conference for Undergraduate Research, San Marcos, California, November 2019.}
 
 In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of proving program correctness with a new logic based on an equational style.
 In contrast to $\mathcal{H}$ systems, $\mathcal{E}$ has only four inference rules -- Substitution, Leibniz, Equanimity, and Transitivity.
@@ -155,29 +162,28 @@ This paper applies $\mathcal{E}$ to the properties of partial and total orders.
 A partial order, denoted $\preceq$, is a binary relation which is reflexive, antisymmetric, and transitive.
 A total order is a partial order which for all elements $b$ and $c$ satisfy $b \preceq c$, $c \preceq b$, or both.
 
-$\subseteq$ is an example of a partial order.
+The subset relation $\subseteq$ over sets is an example of a partial order that is not a total order.
 It is reflexive, because every set is a subset of itself; it is antisymmetric, because if $S \subseteq T$, then $T \subseteq S$ only if $S=T$; and it is transitive, because if $S \subseteq T$ and $T \subseteq U$, then $S \subseteq U$.
-$\subseteq$ is not a total order, because there can be sets $S$ and $T$ such that $S \nsubseteq T$ and $T \nsubseteq S$.
+The subset relation is not a total order, because there can be sets $S$ and $T$ such that $S \nsubseteq T$ and $T \nsubseteq S$.
 
-$\le$ is an example of a total order, and therefore also of a partial order.
-It is reflexive, because every integer is less than or equal to itself; it is antisymmetric, because if $a \le b$, then $b \le a$ only if $a=b$; it is transitive, because if $a \le b$ and $b \le c$, then $a \le c$; and at least one of $a \le b$ and $b \le a$ must be true.
+The at most relation $\le$ over integers is an example of a partial order that is also a total order.
+It is reflexive, because every integer is at most itself; it is antisymmetric, because if $a \le b$, then $b \le a$ only if $a=b$; it is transitive, because if $a \le b$ and $b \le c$, then $a \le c$.
+The at most relation is a total order because at least one of $a \le b$ and $b \le a$ must be true.
+
+Two elements b, c of a partial order are comparable if $b\preceq c$ or $c\preceq b$.
+We formally define the predicate $\incomp(b,c)$ as the negation of comparable.
+\[
+\incomp(b,c) \equiv \lnot b\preceq c \land \lnot c\preceq b
+\]
 
 In addition to partial and total orders, there are strict partial and strict total orders, denoted $\prec$.
 A strict partial or strict total order is computed by removing the reflexive pairs from a partial order or total order.
 This strict partial order is called the reflexive reduction of the corresponding partial order.
 For example, $\subset$ is the reflexive reduction of $\subseteq$, and < is the reflexive reduction of $\le$.
 
-This paper proves that exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$ holds for any given strict total order $\prec$.
-Thus, it is actually a quadrotomy of strict partial orders.
-We refer to it as a quadrotomy of partial orders for simplicity because there is no true quadrotomy of partial orders.
-More than one of $x \preceq y$, $x=y$, $y\preceq x$, or $\incomp(x,y)$ can hold; in fact, if $x=y$, the first three expressions will all be true.
-
-Reference to LADM trichotomy.
-
-Define terms, include discussion of strict vs. general total orders.
-
 \section{Results}
 
+This paper proves that exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$ holds for any given partial order $\preceq$ and its reflexive reduction $\prec$.
 Section 2.1 formally proves a general quadrotomy for partial orders.
 Section 2.2 applies the general quadrotomy to prove the special case of a trichotomy for all total orders.
 In the solutions manual for LADM, Gries and Schneider prove using the properties of integers a trichotomy for $\le$, which is an example of a total order.
