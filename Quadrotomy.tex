@@ -18,20 +18,20 @@
 \usepackage{verbatim}
 
 % For Dr. Warford's computer
-%\begin{comment}
+\begin{comment}
 \setmainfont{Times}[ItalicFont    ={* Italic},
                     BoldFont      ={* Bold},
                     BoldItalicFont={* Bold Italic}]
 \setsansfont{Helvetica}
-%\end{comment}
+\end{comment}
 
 % For Alex's computer
-\begin{comment}
+%\begin{comment}
 \setmainfont{Times New Roman}[ItalicFont    ={* Italic},
                     BoldFont      ={* Bold},
                     BoldItalicFont={* Bold Italic}]
 \setsansfont{Arial}
-\end{comment}
+%\end{comment}
 
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
@@ -151,8 +151,29 @@ The treatment is in marked contrast to the traditional one exemplified by the cl
 
 \subsection{Partial Orders}
 
-Paragraph or section on this application of $\mathcal{E}$ to the problem.
+This paper applies $\mathcal{E}$ to the properties of partial and total orders.
+A partial order, denoted $\preceq$, is a binary relation which is reflexive, antisymmetric, and transitive.
+A total order is a partial order which for all elements $b$ and $c$ satisfy $b \preceq c$, $c \preceq b$, or both.
+
+$\subseteq$ is an example of a partial order.
+It is reflexive, because every set is a subset of itself; it is antisymmetric, because if $S \subseteq T$, then $T \subseteq S$ only if $S=T$; and it is transitive, because if $S \subseteq T$ and $T \subseteq U$, then $S \subseteq U$.
+$\subseteq$ is not a total order, because there can be sets $S$ and $T$ such that $S \nsubseteq T$ and $T \nsubseteq S$.
+
+$\le$ is an example of a total order, and therefore also of a partial order.
+It is reflexive, because every integer is less than or equal to itself; it is antisymmetric, because if $a \le b$, then $b \le a$ only if $a=b$; it is transitive, because if $a \le b$ and $b \le c$, then $a \le c$; and at least one of $a \le b$ and $b \le a$ must be true.
+
+In addition to partial and total orders, there are strict partial and strict total orders, denoted $\prec$.
+A strict partial or strict total order is computed by removing the reflexive pairs from a partial order or total order.
+This strict partial order is called the reflexive reduction of the corresponding partial order.
+For example, $\subset$ is the reflexive reduction of $\subseteq$, and < is the reflexive reduction of $\le$.
+
+This paper proves that exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$ holds for any given strict total order $\prec$.
+Thus, it is actually a quadrotomy of strict partial orders.
+We refer to it as a quadrotomy of partial orders for simplicity because there is no true quadrotomy of partial orders.
+More than one of $x \preceq y$, $x=y$, $y\preceq x$, or $\incomp(x,y)$ can hold; in fact, if $x=y$, the first three expressions will all be true.
+
 Reference to LADM trichotomy.
+
 Define terms, include discussion of strict vs. general total orders.
 
 \section{Results}
@@ -188,14 +209,14 @@ The first lemma,
 b \prec c \lors b = c \equivss b \preceq c
 \]
 where $\prec$ is the reflexive reduction of $\preceq$, states that comparing two elements under a partial order is equivalent to comparing them under a strict order or equality.
-This intuitive fact is used in several points during the proofs, and follows closely from the definition of a strict order.
+This lemma follows closely from the definition of a strict order.
 
 The second lemma,
 \[
 (p \lors q) \lands \lnot (q \lors r) \equivss p \lands \lnot q \lands \lnot r
 \]
 is based solely on propositional calculus.
-It is used only in the proof of Quadrotomy (a), but is introduced as a lemma to avoid cluttering that proof with simple boolean steps.
+It is used only in the proof of Quadrotomy (a), but is introduced as a lemma to avoid cluttering that proof with simple steps.
 
 The third lemma,
 \[
@@ -207,13 +228,14 @@ This is because the calculational system allows us to use the consequent of an i
 The fourth lemma,
 \[\rho$ is irreflexive $\impl (b \rho c \impl \lnot (b = c))
 \]
-follows closely from the definition of irreflexivity, and is used much like the third lemma: when the antecedent is true, the consequent can be used as a theorem.
+follows closely from the definition of irreflexivity, and is used like the third lemma: when the antecedent is true, the consequent can be used as a theorem.
 
 The fifth lemma,
 \[
 \rho$ is antisymmetric $\lands$ $\rho$ is reflexive $\impl (b \rho c \lands c \rho b \equivs b = c)
 \]
-is an important property of partial orders, which can again be proven by mutual implication: no element can both precede and follow any other element, unless the two are identical.
+is proved by deduction and mutual implication.
+Partial orders satisfy the antecedent, and the consequent therefore applies: no element can both precede and follow any other element, unless the two are identical.
 Like the third and fourth lemmas, when the conjuncts of the antecedent of this theorem are true, the consequent can be used as a theorem.\\
 
 Lemma 1: $b \prec c \lors b = c \equivss b \preceq c$, where $\prec$ is the reflexive reduction of $\preceq$.
@@ -289,17 +311,19 @@ Using (4.7) Mutual implication, the proof of $b \rho c \lands c \rho b \impl b =
 	\> \>   $b = c$ \quad \myqed\\
 \end{tabbing}
 
-The proof of $b = c \impl b \rho c \lands c \rho b$ is by (4.4) Deduction.
+The proof of $b = c \impl b \rho c \lands c \rho b$ follows.
 
 \textit{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $b \;\rho\; c \lands c \;\rho\; b$\\
-	\> $=$  \>  \Hint{Assume the antecedent, $b = c$}\\[\lgap]
-	\> \>   $b \;\rho\; b \lands b \;\rho\; b$\\
+	\> \>  $b = c \impl b \rho c \lands c \rho b$\\
+	\> $=$  \>  \Hint{(3.84b) Substitution, $(e = f) \impl E^z_e \equiv (e = f) \impl E^z_f$}\\[\lgap]
+	\> \>   $b=c \impl b \;\rho\; b \lands b \;\rho\; b$\\
 	\> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p \lands p \equivs p$}\\[\lgap]
-	\> \>   $b \;\rho\; b$\\
+	\> \>   $b = c \impl b \;\rho\; b$\\
 	\> $=$  \>  \Hint{Assume the conjunct of the antecedent $\rho$ is reflexive, or $(\all b \drrb b \;\rho\; b)$}\\[\lgap]
+	\> \>   $b = c \impl true$\\
+	\> $=$  \>  \Hint{(3.72) Right zero of $\impl$: $p \impl true \equiv true$}\\[\lgap]
 	\> \>   $true$ \quad \myqed\\
 \end{tabbing}
 
@@ -467,7 +491,7 @@ The third is used in none of the theorems, but is a step in the proof that they 
 \end{table}
 
 While the expressions as given may look different, all the rows are equivalent because they describe the same truth table, which we have checked with an automated truth-table generator.
-One could prove that the rows are equivalent with the calculational system, but the proof is tedious, and is not presented here.
+One can prove that the rows are equivalent with the calculational system, but the proof is tedious, and is not presented here.
 Lemma 7 follows from Table 1 --- in particular, from the equivalence of Double Implication / Three Propositions and Equivalence String / Three Propositions.\\
 
 Lemma 7:\\ $(p \equiv q \equiv r) \lands \lnot(p \land q \land r) \equivss (p \equivs \lnot(q \lor r)) \lands (q \equivs \lnot(p \lor r)) \lands (r \equivs \lnot(p \lor q))$\\
