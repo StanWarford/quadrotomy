@@ -170,10 +170,10 @@ The at most relation $\le$ over integers is an example of a partial order that i
 It is reflexive, because every integer is at most itself; it is antisymmetric, because if $a \le b$, then $b \le a$ only if $a=b$; it is transitive, because if $a \le b$ and $b \le c$, then $a \le c$.
 The at most relation is a total order because at least one of $a \le b$ and $b \le a$ must be true.
 
-Two elements b, c of a partial order are comparable if $b\preceq c$ or $c\preceq b$.
+Two elements $b$, $c$ of a partial order are comparable if $b\preceq c$ or $c\preceq b$.
 We formally define the predicate $\incomp(b,c)$ as the negation of comparable.
 \[
-\incomp(b,c) \equiv \lnot b\preceq c \land \lnot c\preceq b
+\incomp(b,c) \equiv \lnot (b\preceq c) \land \lnot (c\preceq b)
 \]
 
 In addition to partial and total orders, there are strict partial and strict total orders, denoted $\prec$.
@@ -472,7 +472,7 @@ Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, where < is a
 There are several different ways to describe a stituation in which several propositions are both mutually exclusive (that is, at most one can be true) and collectively exhaustive (that is, at least one must be true).
 
 Table \ref{fig:meceFig} below shows three different formulations.
-The first we name ``Double Implication'' because it can be intuitively read as a series of two-way implications, "if and only if" statements.
+The first we name ``Double Implication'' because it can be intuitively read as a series of two-way implications, ``if and only if'' statements.
 The second we name ``Equivalence String'' because the core element is a string of equivalences, followed by a string of excluded specific cases.
 The third we name ``Truth Table'' because of its strong resemblance to a truth table; each disjunct says that one particular row of the truth table is true.
 
@@ -524,7 +524,11 @@ Lemma 7:\\ $(p \equiv q \equiv r) \lands \lnot(p \land q \land r) \equivss (p \e
 
 \section{Conclusion}
 
-Something
+In general, elements$x$ and $y$ of a partial order satisfy exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$, where incomp is defined as $\incomp(x,y) \equivs \lnot (x\preceq y) \land \lnot (y\preceq x)$ and $\prec$ is the reflexive reduction of $\preceq$.
+This is a generalization of the trichotomy of the at most relation $\le$, which states that integers $a$ and $b$ satisfy exactly one of (a) $a<b$, (b) $a=b$, or (c) $a>b$.
+
+This paper demonstrates the power of $\mathcal{E}$ for proofs in discrete mathematics, in spite of its lack of wide adoption.
+The calculational system disambiguates every step of each proof while still allowing for easy conversion between intuitive understanding and formalization.
 
 \bibliographystyle{plain}
 \bibliography{myBiblio.bib}
