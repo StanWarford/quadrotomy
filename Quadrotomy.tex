@@ -43,7 +43,7 @@
 \newcommand{\lgap}{2pt}                             % Line gap
 \newcommand{\llgap}{6pt}                            % Larger line gap
 \newcommand{\lllgap}{12pt}                          % Gap between tables
-\newcommand{\mymathindent}{24pt}                    % Indentation for math tabbing
+\newcommand{\mymathindent}{24pt}                    % Indentation for math tabbingq
 \newcommand{\equivs}{\ensuremath{\;\equiv\;}}       % Equivales with space
 \newcommand{\equivss}{\ensuremath{\;\;\equiv\;\;}}  % Equivales with double space
 \newcommand{\lors}{\ensuremath{\;\lor\;}}           % Disjunction with space
@@ -142,14 +142,14 @@ variables (lowercase letters $p$, $q$, \dots), and the constants \textit{true} a
 Hilbert-style logic systems, $\mathcal{H}$, are the deductive logic systems traditionally used in mathematics to describe the propositional calculus.
 A key feature of such systems is their multiplicity of inference rules and the importance of modus ponens as one of them.\blfootnote{Presented at the Southern California Conference for Undergraduate Research, San Marcos, California, November 2019.}
 
-In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of proving program correctness with a new logic based on an equational style.
+In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of proving program correctness with a new logic, $\mathcal E$, based on a calculational style.
 In contrast to $\mathcal{H}$ systems, $\mathcal{E}$ has only four inference rules -- Substitution, Leibniz, Equanimity, and Transitivity.
 In $\mathcal{E}$, modus ponens plays a secondary role.
 It is not an inference rule, nor is it assumed as an axiom, but instead is proved as a theorem from the axioms using the inference rules.
 
-Gries and Schneider \cite{Gries1995, Gries1995145} show that $\mathcal{E}$, also known as a \textit{calculational} system, has several advantages over traditional logic systems.
+Gries and Schneider \cite{Gries1995, Gries1995145} show that $\mathcal{E}$, also known as an \textit{equational} system, has several advantages over traditional logic systems.
 The primary advantage of $\mathcal{E}$ over $\mathcal{H}$ systems is that the calculational system has only four proof rules, with inference rule Leibniz as the primary one.
-Roughly speaking, Leibniz is ``substituting equals for equals,'' hence the moniker \textit{equational} deductive system.
+Roughly speaking, Leibniz is ``substituting equals for equals,'' hence the moniker ``equational'' deductive system.
 In contrast, $\mathcal{H}$ systems rely on a more extensive set of inference rules.
 
 In 1994, Gries and Schneider published \textit{A Logical Approach to Discrete Math} (LADM) \cite{LADM}, in which they first develop $\mathcal{E}$ for propositional and predicate calculus, and then extend it to a theory of sets, a theory of sequences, relations and functions, a theory of integers, recurrence relations, modern algebra, and a theory of graphs.
@@ -191,7 +191,7 @@ Section 2.3 shows that Gries and Schneider's trichotomy for integers is a specia
 
 \subsection{Quadrotomy} \label {Quadrotomy}
 
-To prove that two elements $a$ and $b$ are related by exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$, we prove the following four-part theorem:
+To prove that two elements $a$ and $b$ are related by exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$, we prove the following four-part theorem:\\
 
 Theorem, Quadrotomy (a): $b \prec c \equivss \lnot(c \prec b \lors b = c \lors \incomp(b, c))$
 
@@ -200,12 +200,13 @@ Theorem, Quadrotomy (b): $c \prec b \equivss \lnot(b \prec c \lors b = c \lors \
 Theorem, Quadrotomy (c): $b = c \equivss \lnot(b \prec c \lors c \prec b \lors \incomp(b, c))$
 
 Theorem, Quadrotomy (d): $\incomp(b, c) \equivss \lnot(b \prec c \lors c \prec b \lors b = c)$\\
-By mutual implication $p\equiv q$ is equivalent to $p\impl q$ and $q\impl p$.
+
+\noindent By mutual implication $p\equiv q$ is equivalent to $p\impl q$ and $q\impl p$.
 The left-to-right implication for Quadrotomy (a) asserts that if $b\prec c$ holds, then none of the other three parts of the quadrotomy holds, and similarly for theorems (b), (c), and (d).
-Consequently, at most one of the four parts of the quadrotomy is true.
+Consequently, \textit{at most} one of the four parts of the quadrotomy is true.
 The right-to-left implication for Quadrotomy (a) asserts that if none of the other three parts of the quadrotomy holds, then $b\prec c$ holds, and similarly for theorems (b), (c), and (d).
-Consequently, at least one of the four parts of the quadrotomy is true.
-Therefore, exactly one of the four parts of the quadrotomy is true.
+Consequently, \textit{at least} one of the four parts of the quadrotomy is true.
+Therefore, \textit{exactly} one of the four parts of the quadrotomy is true.
 
 \subsubsection{Lemmas}
 
@@ -403,15 +404,15 @@ Theorem, Quadrotomy (d): $\incomp(b, c) \equivss \lnot(b \prec c \lors c \prec b
 
 \subsection{Generalized Trichotomy} \label{Trichotomy}
 
-This subsection presents a three-part proof of the trichotomy of total orders:
+This subsection presents a three-part proof of the trichotomy of total orders:\\
 
 Theorem, Trichotomy (a): $b < c \equivss \lnot(c < b \lors b = c)$, where < is a strict total order.
 
 Theorem, Trichotomy (b): $c < b \equivss \lnot(b < c \lors b = c)$, where < is a strict total order.
 
-Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, where < is a strict total order.
+Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, where < is a strict total order.\\
 
-These theorems closely mirror the four theorems of Quadrotomy, but with the disjunct $\incomp(b,c)$ removed.
+\noindent These theorems closely mirror the four theorems of Quadrotomy, but with the disjunct $\incomp(b,c)$ removed.
 The reason for this is Lemma 6, $\incomp(b,c) \equivs false$, where $\incomp(b,c)$ refers to b and c being incomparable under a total order $\le$.
 Lemma 6 follows closely from the definition of a total order, and the proofs of the three parts of Trichotomy follow closely from Lemma 6 and Quadrotomy.\\
 
@@ -459,7 +460,7 @@ Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, where < is a
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
 	\> \>  $b = c$\\
 	\> $=$  \>  \Hintfirst{(Theorem, Quadrotomy (c), $b = c \equivss \lnot(b \prec c \lors c \prec b \lors \incomp(b, c))$, with}\\
-	\>			 \>  \Hintlast{$\prec := <$}\\[\lgap]
+	\>			 \>  \Hintlast{$\prec\; := \;<$}\\[\lgap]
 	\> \>   $\lnot(b < c \lors c < b \lors \incomp(b, c))$\\
 	\> $=$  \>  \Hint{Lemma 6, $\incomp(b,c) \equivs false$ for a total order}\\[\lgap]
 	\> \>   $\lnot(b < c \lors c < b \lors false)$\\
@@ -471,7 +472,7 @@ Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, where < is a
 
 There are several different ways to describe a stituation in which several propositions are both mutually exclusive (that is, at most one can be true) and collectively exhaustive (that is, at least one must be true).
 
-Table \ref{fig:meceFig} below shows three different formulations.
+Table \ref{fig:meceFig} shows three different formulations.
 The first we name ``Double Implication'' because it can be intuitively read as a series of two-way implications, ``if and only if'' statements.
 The second we name ``Equivalence String'' because the core element is a string of equivalences, followed by a string of excluded specific cases.
 The third we name ``Truth Table'' because of its strong resemblance to a truth table; each disjunct says that one particular row of the truth table is true.
@@ -524,10 +525,12 @@ Lemma 7:\\ $(p \equiv q \equiv r) \lands \lnot(p \land q \land r) \equivss (p \e
 
 \section{Conclusion}
 
-In general, elements$x$ and $y$ of a partial order satisfy exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$, where incomp is defined as $\incomp(x,y) \equivs \lnot (x\preceq y) \land \lnot (y\preceq x)$ and $\prec$ is the reflexive reduction of $\preceq$.
-This is a generalization of the trichotomy of the at most relation $\le$, which states that integers $a$ and $b$ satisfy exactly one of (a) $a<b$, (b) $a=b$, or (c) $a>b$.
+This paper uses the calculational logic system $\mathcal{E}$ to prove the quadrotomy---elements $x$ and $y$ of a partial order satisfy exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$, where incomp is defined as $\incomp(x,y) \equivs \lnot (x\preceq y) \land \lnot (y\preceq x)$ and $\prec$ is the reflexive reduction of $\preceq$.
+The quadrotomy is a generalization of the trichotomy---elements $x$ and $y$ of a total order satisfy exactly one of (a) $x < y$, (b) $x=y$, or (c) $y < x$, where < is any total order.
+This trichotomy is a generalization to all total orders of the trichotomy of the at most relation $\le$, which states that integers $a$ and $b$ satisfy exactly one of (a) $a<b$, (b) $a=b$, or (c) $a>b$.
+The trychotomy of the at most relation is proved in the solutions manual of LADM using the properties of integers.
 
-This paper demonstrates the power of $\mathcal{E}$ for proofs in discrete mathematics, in spite of its lack of wide adoption.
+This paper demonstrates the power of the calculational logic system $\mathcal{E}$ for proofs in discrete mathematics, in spite of its slow adoption in the computer science community.
 The calculational system disambiguates every step of each proof while still allowing for easy conversion between intuitive understanding and formalization.
 
 \bibliographystyle{plain}
