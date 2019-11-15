@@ -143,7 +143,7 @@ Hilbert-style logic systems, $\mathcal{H}$, are the deductive logic systems trad
 A key feature of such systems is their multiplicity of inference rules and the importance of modus ponens as one of them.\blfootnote{Presented at the Southern California Conference for Undergraduate Research, San Marcos, California, November 2019.}
 
 In the late 1980's, Dijkstra and Scholten \cite{DandS}, and Feijen \cite{Feij} developed a method of proving program correctness with a new logic, $\mathcal E$, based on a calculational style.
-In contrast to $\mathcal{H}$ systems, $\mathcal{E}$ has only four inference rules -- Substitution, Leibniz, Equanimity, and Transitivity.
+In contrast to $\mathcal{H}$ systems, $\mathcal{E}$ has only four inference rules---Substitution, Leibniz, Equanimity, and Transitivity.
 In $\mathcal{E}$, modus ponens plays a secondary role.
 It is not an inference rule, nor is it assumed as an axiom, but instead is proved as a theorem from the axioms using the inference rules.
 
@@ -167,8 +167,8 @@ It is reflexive, because every set is a subset of itself; it is antisymmetric, b
 The subset relation is not a total order, because there can be sets $S$ and $T$ such that $S \nsubseteq T$ and $T \nsubseteq S$.
 
 The at most relation $\le$ over integers is an example of a partial order that is also a total order.
-It is reflexive, because every integer is at most itself; it is antisymmetric, because if $a \le b$, then $b \le a$ only if $a=b$; it is transitive, because if $a \le b$ and $b \le c$, then $a \le c$.
-The at most relation is a total order because at least one of $a \le b$ and $b \le a$ must be true.
+It is reflexive, because every integer is at most itself; it is antisymmetric, because if $a \le b$, then $b \le a$ only if $a=b$; and it is transitive, because if $a \le b$ and $b \le c$, then $a \le c$.
+The at most relation is a total order, because at least one of $a \le b$ and $b \le a$ must be true.
 
 Two elements $b$, $c$ of a partial order are comparable if $b\preceq c$ or $c\preceq b$.
 We formally define the predicate $\incomp(b,c)$ as the negation of comparable.
@@ -183,7 +183,7 @@ For example, $\subset$ is the reflexive reduction of $\subseteq$, and < is the r
 
 \section{Results}
 
-This paper proves that exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$ holds for any given partial order $\preceq$ and its reflexive reduction $\prec$.
+This paper proves that exactly one of (a) $b \prec c$, (b) $c\prec b$, (c) $b=c$, or (d) $\incomp(b,c)$ holds for any given partial order $\preceq$ and its reflexive reduction $\prec$.
 Section 2.1 formally proves a general quadrotomy for partial orders.
 Section 2.2 applies the general quadrotomy to prove the special case of a trichotomy for all total orders.
 In the solutions manual for LADM, Gries and Schneider prove using the properties of integers a trichotomy for $\le$, which is an example of a total order.
@@ -191,7 +191,7 @@ Section 2.3 shows that Gries and Schneider's trichotomy for integers is a specia
 
 \subsection{Quadrotomy} \label {Quadrotomy}
 
-To prove that two elements $a$ and $b$ are related by exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$, we prove the following four-part theorem:\\
+To prove that two elements $b$ and $c$ are related by exactly one of (a) $b \prec c$, (b) $c\prec b$, (c) $b=c$, or (d) $\incomp(b,c)$, we prove the following four-part theorem:\\
 
 Theorem, Quadrotomy (a): $b \prec c \equivss \lnot(c \prec b \lors b = c \lors \incomp(b, c))$
 
@@ -233,13 +233,13 @@ In fact, the consequent is equivalent to the antecedent, a step which is used in
 This is because the calculational system allows us to use the consequent of an implication (here, $p \lands q \equivs p$) as a theorem as long as the antecedent (here, $p \impl q$) is true.
 
 The fourth lemma,
-\[\rho$ is irreflexive $\impl (b \rho c \impl \lnot (b = c))
+\[\rho$ is irreflexive $\impl (b\; \rho\; c \impl \lnot (b = c))
 \]
 follows closely from the definition of irreflexivity, and is used like the third lemma: when the antecedent is true, the consequent can be used as a theorem.
 
 The fifth lemma,
 \[
-\rho$ is antisymmetric $\lands$ $\rho$ is reflexive $\impl (b \rho c \lands c \rho b \equivs b = c)
+\rho$ is antisymmetric $\lands$ $\rho$ is reflexive $\impl (b\; \rho\; c \lands c\; \rho\; b \equivs b = c)
 \]
 is proved by deduction and mutual implication.
 Partial orders satisfy the antecedent, and the consequent therefore applies: no element can both precede and follow any other element, unless the two are identical.
@@ -257,7 +257,7 @@ Lemma 1: $b \prec c \lors b = c \equivss b \preceq c$, where $\prec$ is the refl
 	\> \>   $ \langle b, c \rangle \in\; \prec \lors \langle b, c \rangle \in i_B$\\
 	\> $=$  \>  \Hint{(11.20) Axiom, Union, $v \in\; S \cup T \equivss v \in S \lors v \in T$}\\[\lgap]
 	\> \>   $ \langle b, c \rangle \in\; \prec \cup\; i_B$\\
-	\> $=$  \>  \Hint{(14.49b) If $\rho$ is a quasi order over a set B, then $\rho \cup i_B$ is a partial order}\\[\lgap]
+	\> $=$  \>  \Hint{(14.49b) If $\rho$ is a strict order over a set B, then $\rho \cup i_B$ is a partial order}\\[\lgap]
 	\> \>   $ \langle b, c \rangle \in\; \preceq$\\
 	\> $=$  \>  \Hint{(14.15.4) Notation}\\[\lgap]
 	\> \>   $b \preceq c$\quad \myqed\\
@@ -288,27 +288,27 @@ Lemma 3: $(p \impl q) \impl (p \lands q \equivs p)$
 	\> \>   $p \impl q$ \quad \myqed\\
 \end{tabbing}
 
-Lemma 4: $\rho$ is irreflexive $\impl (b \rho c \impl \lnot (b = c))$
+Lemma 4: $\rho$ is irreflexive $\impl (b\; \rho\; c \impl \lnot (b = c))$
 
 \textit{Proof}: The proof is by (4.4) Deduction.
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $b \rho c \impl \lnot (b = c)$\\
+	\> \>  $b\; \rho\; c \impl \lnot (b = c)$\\
 	\> $=$  \>  \Hint{(3.61) Contrapositive, $p \impl q \equivs \lnot q \impl \lnot p$, with (3.12) Double negation}\\[\lgap]
-	\> \>   $b = c \impl \lnot (b \rho c)$\\
+	\> \>   $b = c \impl \lnot (b\; \rho\; c)$\\
 	\> $=$  \>  \Hint{(3.84b) Substitution, $(e = f) \impl E^z_e \equivs (e = f) \impl E^z_f$}\\[\lgap]
-	\> \>   $b = c \impl \lnot (b \rho b)$\\
-	\> $=$  \>  \Hint{Assume the antecedent, $\rho$ is irreflexive, or $(\all b \dr \rb \lnot (b \rho b))$}\\[\lgap]
+	\> \>   $b = c \impl \lnot (b\; \rho\; b)$\\
+	\> $=$  \>  \Hint{Assume the antecedent, $\rho$ is irreflexive, or $(\all b \drrb \lnot (b\; \rho\; b))$}\\[\lgap]
 	\> \>   $b = c \impl true$\\
 	\> $=$  \>  \Hint{(3.72) Right Zero of $\impl$, $p \impl true \equivs true$}\\[\lgap]
 	\> \>   $true$ \quad \myqed\\
 \end{tabbing}
 
-Lemma 5: $\rho$ is antisymmetric $\lands$ $\rho$ is reflexive $\impl (b \rho c \lands c \rho b \equivs b = c)$
+Lemma 5: $\rho$ is antisymmetric $\lands$ $\rho$ is reflexive $\impl (b\; \rho\; c \lands c\; \rho\; b \equivs b = c)$
 
-\textit{Proof}: The proof is by (4.4) Deduction, \textit{i.e.}, prove the consequent, $b \rho c \lands c \rho b \equivs b = c$, assuming the conjuncts of the antecedent.
+\textit{Proof}: The proof is by (4.4) Deduction, \textit{i.e.}, prove the consequent, $b\; \rho\; c \lands c\; \rho\; b \equivs b = c$, assuming the conjuncts of the antecedent.
 
-Using (4.7) Mutual implication, the proof of $b \rho c \lands c \rho b \impl b = c$ follows.
+Using (4.7) Mutual implication, the proof of $b\; \rho\; c \lands c\; \rho\; b \impl b = c$ follows.
 
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
@@ -318,12 +318,12 @@ Using (4.7) Mutual implication, the proof of $b \rho c \lands c \rho b \impl b =
 	\> \>   $b = c$ \quad \myqed\\
 \end{tabbing}
 
-The proof of $b = c \impl b \rho c \lands c \rho b$ follows.
+The proof of $b = c \impl b\; \rho\; c \lands c\; \rho\; b$ follows.
 
 \textit{Proof}:
 \begin{tabbing}
 \hspace{\mymathindent} \= $= \;$ \= \myqedtab \= \kill
-	\> \>  $b = c \impl b \rho c \lands c \rho b$\\
+	\> \>  $b = c \impl b\; \rho\; c \lands c\; \rho\; b$\\
 	\> $=$  \>  \Hint{(3.84b) Substitution, $(e = f) \impl E^z_e \equiv (e = f) \impl E^z_f$}\\[\lgap]
 	\> \>   $b=c \impl b \;\rho\; b \lands b \;\rho\; b$\\
 	\> $=$  \>  \Hint{(3.38) Idempotency of $\land$, $p \lands p \equivs p$}\\[\lgap]
@@ -427,8 +427,8 @@ Lemma 6: $\incomp(b,c) \equivs false$, where $\incomp(b,c)$ refers to b and c be
 	\> \>   $\lnot (b \le c) \lands \lnot (c \le b)$\\
 	\> $=$  \>  \Hint{(3.47b) De Morgan, $\lnot (p \lors q) \equivs \lnot p \lands \lnot q$}\\[\lgap]
 	\> \>   $\lnot (b \le c \lors c \le b)$\\
-	\> $=$  \>  \Hintfirst{(14.50) Definition, Total Order: A partial order $\preceq$ over \textit{B} is called a total or}\\
-	\>			\>  \Hintlast{linear order if $(\all b,c \drrb b \preceq c \lors c \preceq b)$}\\[\lgap]
+	\> $=$  \>  \Hintfirst{(14.50) Definition, Total Order: A partial order $\preceq$ is called a total or linear}\\
+	\>			\>  \Hintlast{order if $(\all b,c \drrb b \preceq c \lors c \preceq b)$}\\[\lgap]
 	\> \>   $\lnot true$\\
 	\> $=$  \>  \Hint{(3.8) Definition of false}\\[\lgap]
 	\> \>   $false$\quad \myqed\\
@@ -499,7 +499,7 @@ The third is used in none of the theorems, but is a step in the proof that they 
 
 While the expressions as given may look different, all the rows are equivalent because they describe the same truth table, which we have checked with an automated truth-table generator.
 One can prove that the rows are equivalent with the calculational system, but the proof is tedious, and is not presented here.
-Lemma 7 follows from Table 1 --- in particular, from the equivalence of Double Implication / Three Propositions and Equivalence String / Three Propositions.\\
+Lemma 7 follows from Table 1 --- in particular, from the equivalence of Equivalence String / Three Propositions and Double Implication / Three Propositions.\\
 
 Lemma 7:\\ $(p \equiv q \equiv r) \lands \lnot(p \land q \land r) \equivss (p \equivs \lnot(q \lor r)) \lands (q \equivs \lnot(p \lor r)) \lands (r \equivs \lnot(p \lor q))$\\
 
@@ -515,9 +515,9 @@ Lemma 7:\\ $(p \equiv q \equiv r) \lands \lnot(p \land q \land r) \equivss (p \e
 	\> $=$  \>  \Hintfirst{Theorem, Trichotomy (a), $b < c \equivss \lnot(c < b \lors b = c)$, with $<$ (generic strict}\\
 	\>			 \>  \Hintlast{total order) replaced by $<$ (integers)}\\[\lgap]
 	\> \>   $true \lands (b < a \equivs \lnot(a < b \lors a = b)) \lands (a = b \equivs \lnot(a < b \lors b < a))$\\
-	\> $=$  \>  \Hint{Theorem, Trichotomy (b): $c < b \equivss \lnot(b < c \lors b = c)$, with $<:=<$}\\[\lgap]
+	\> $=$  \>  \Hint{Theorem, Trichotomy (b): $c < b \equivss \lnot(b < c \lors b = c)$, with $<\;:=\;<$}\\[\lgap]
 	\> \>   $true \lands true \lands (a = b \equivs \lnot(a < b \lors b < a))$\\
-	\> $=$  \>  \Hint{Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, with $<:=<$}\\[\lgap]
+	\> $=$  \>  \Hint{Theorem, Trichotomy (c): $b = c \equivss \lnot(b < c \lors c < b)$, with $<\;:=\;<$}\\[\lgap]
 	\> \>   $true \lands true \lands true$\\
 	\> $=$  \>  \Hint{(3.39) Identity of $\land$, $p \land true \equivs p$, twice}\\[\lgap]
 	\> \>   $true$\quad \myqed\\
@@ -525,10 +525,10 @@ Lemma 7:\\ $(p \equiv q \equiv r) \lands \lnot(p \land q \land r) \equivss (p \e
 
 \section{Conclusion}
 
-This paper uses the calculational logic system $\mathcal{E}$ to prove the quadrotomy---elements $x$ and $y$ of a partial order satisfy exactly one of (a) $x \prec y$, (b) $x=y$, (c) $y\prec x$, or (d) $\incomp(x,y)$, where incomp is defined as $\incomp(x,y) \equivs \lnot (x\preceq y) \land \lnot (y\preceq x)$ and $\prec$ is the reflexive reduction of $\preceq$.
-The quadrotomy is a generalization of the trichotomy---elements $x$ and $y$ of a total order satisfy exactly one of (a) $x < y$, (b) $x=y$, or (c) $y < x$, where < is any total order.
+This paper uses the calculational logic system $\mathcal{E}$ to prove the quadrotomy---elements $b$ and $c$ of a partial order satisfy exactly one of (a) $b \prec c$, (b) $b=c$, (c) $c\prec b$, or (d) $\incomp(b,c)$, where incomp is defined as $\incomp(b,c) \equivs \lnot (b\preceq c) \land \lnot (c\preceq b)$ and $\prec$ is the reflexive reduction of $\preceq$.
+The quadrotomy is a generalization of the trichotomy---elements $b$ and $c$ of a total order satisfy exactly one of (a) $b < c$, (b) $b=c$, or (c) $c < b$, where < is any total order.
 This trichotomy is a generalization to all total orders of the trichotomy of the at most relation $\le$, which states that integers $a$ and $b$ satisfy exactly one of (a) $a<b$, (b) $a=b$, or (c) $a>b$.
-The trychotomy of the at most relation is proved in the solutions manual of LADM using the properties of integers.
+The trichotomy of the at most relation is proved in the solutions manual of LADM using the properties of integers.
 
 This paper demonstrates the power of the calculational logic system $\mathcal{E}$ for proofs in discrete mathematics, in spite of its slow adoption in the computer science community.
 The calculational system disambiguates every step of each proof while still allowing for easy conversion between intuitive understanding and formalization.
